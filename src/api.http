@@ -1,0 +1,60 @@
+GET http://34.67.70.10:8443/
+
+###
+
+POST https://faas-cloud-backend.mouhammad.ml/
+Content-Type: application/json
+
+{
+  "projectName": "Nom Prjecet",
+  "applicationType":"Development",
+  "dependencies": ["nginx", "node js express", "mongo db"],
+  "SLA": 1,
+  "environment": "dev",
+  "dataSize": 100,
+  "connectedApplications": ["Agacy", "CRM" ],
+  "techRequirements": ["network value", "bandwith"],
+  "costEstimation": 100, 
+  "cpu": 1,
+  "disk": 1,
+  "memory": 100,
+  "numberOfVm": 2,
+  "osImage": "Windows",
+  "osType": "Windows",
+}
+
+### 
+
+POST https://faas-cloud-backend.mouhammad.ml/
+Content-Type: application/json
+
+{
+  "projectName": "Nom Prjecet",
+  "applicationType": "Development",
+  "dependencies": [
+    "nginx",
+    "node js express",
+    "mongo db"
+  ],
+  "SLA": 4,
+  "environment": "dev",
+  "dataSize": 100,
+  "connectedApplications": [
+    "Agacy",
+    "CRM"
+  ],
+  "techRequirements": [
+    "network value",
+    "bandwith"
+  ],
+  "costEstimation": 150000,
+  "cpu": 1,
+  "disk": 1,
+  "memory": 1,
+  "numberOfVm": 1,
+  "osImage": "Windows",
+  "osType": "Windows"
+}
+###3
+
+GET https://faas-cloud-backend.mouhammad.ml/projects/601bc70fb97b883638bec5f4/instances
