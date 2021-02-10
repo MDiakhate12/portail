@@ -154,8 +154,8 @@ const StepForm = () => {
                                 align="center"
                                 style={{ margin: '10px 0' }}
                             >
-                                Ce platform vous permez de faire le provisionning dans le cloud le
-                                plus propice
+                                Cette platforme vous permet de faire le provisionning dans le cloud le
+                                plus propice.
                             </Typography>
                         </Box>
                         <Stepper
