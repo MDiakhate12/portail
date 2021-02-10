@@ -34,38 +34,6 @@ const initialValues = {
     providerList: []
 }
 
-// const fieldsValidation = {
-//   firstName: {
-//     error: '',
-//     validate: 'text',
-//     minLength: 2,
-//     maxLength: 20,
-//   },
-//   lastName: {
-//     error: '',
-//     validate: 'text',
-//     minLength: 2,
-//     maxLength: 20,
-//   },
-//   email: {
-//     error: '',
-//     validate: 'email',
-//   },
-//   gender: {},
-//   date: {},
-//   city: {
-//     error: '',
-//     validate: 'text',
-//     minLength: 3,
-//     maxLength: 20,
-//   },
-//   phone: {
-//     error: '',
-//     validate: 'phone',
-//     maxLength: 15,
-//   },
-// }
-
 const StepForm = () => {
     const [activeStep, setActiveStep] = useState(0)
     const [formValues, setFormValues] = useState(initialValues)
@@ -85,13 +53,6 @@ const StepForm = () => {
             ...prev,
             [name]: value,
         }))
-
-        // set errors
-        // const error = formValidation(name, value, fieldsValidation) || ''
-
-        // setFormErrors({
-        //   [name]: error,
-        // })
     }
 
     const handleSteps = (step) => {
@@ -155,7 +116,7 @@ const StepForm = () => {
                                 style={{ margin: '10px 0' }}
                             >
                                 Cette platforme vous permet de faire le provisionning dans le cloud le
-                                plus propice - DIAF BROO !!!
+                                plus propice - DIAF COPAIN !!!
                             </Typography>
                         </Box>
                         <Stepper
