@@ -1,6 +1,6 @@
 
 pipeline {
-  agent 
+  agent any
   stages {
     stage('echo diaf') {
       steps {
