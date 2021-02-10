@@ -1,5 +1,5 @@
 
-node('faas-cloud-frontend') {
+pipeline {
   agent 
   stages {
     stage('echo diaf') {
