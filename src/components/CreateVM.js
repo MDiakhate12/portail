@@ -46,18 +46,18 @@ export default function CreateVM() {
   }
 
   const onSubmit = (evt) => {
-    console.log(state);
-    axios.post("https://faas-cloud-backend.mouhammad.ml/", state)
-    .then(res => {
-      console.log(typeof res.data);
-      if(typeof res.data === 'string' ) {
-        setError(res.data)
-      }else {
-        history.push("/list-vm");
-      }
-    })
-    .catch(err => console.log(err))
-    console.log("object");
+    console.log("FROM CREATE:", state);
+    // axios.post("https://faas-cloud-backend.mouhammad.ml/", state)
+    // .then(res => {
+    //   console.log(typeof res.data);
+    //   if(typeof res.data === 'string' ) {
+    //     setError(res.data)
+    //   }else {
+    //     history.push("/list-vm");
+    //   }
+    // })
+    // .catch(err => console.log(err))
+    // console.log("object");
   }
 
 
