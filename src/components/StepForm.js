@@ -155,7 +155,7 @@ const StepForm = () => {
                                 style={{ margin: '10px 0' }}
                             >
                                 Cette platforme vous permet de faire le provisionning dans le cloud le
-                                plus propice - DIAF UPDATE.
+                                plus propice - DIAF.
                             </Typography>
                         </Box>
                         <Stepper
