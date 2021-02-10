@@ -1,8 +1,16 @@
 node('faas-cloud-frontend') {
-    stage('echo diaf') {
+    stage('pull github changes') {
         dir('/home/dmouhammad/portail') {
             sh "git pull origin master"
+        }
+    }
+    stage('build') {
+        dir('/home/dmouhammad/portail') {
             sh "npm run build"
+        }
+    }
+    stage('deploy') {
+        dir('/home/dmouhammad/portail') {
             sh "sudo cp -r ./build/* /var/www/faas-cloud-frontend.mouhammad.ml/html/"
         }
     }
