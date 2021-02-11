@@ -19,6 +19,7 @@ const FirstStep = ({
         connectedApplications,
         techRequirements,
         costEstimation,
+        projectArchitecture
     },
 }) => {
     // Check if all values are not empty or if there are some error
@@ -82,9 +83,9 @@ const FirstStep = ({
                     <FormControl fullWidth>
                         <InputLabel>Application Architecture</InputLabel>
                         <Select
-                            value={applicationType || ''}
+                            value={projectArchitecture || ''}
                             onChange={handleChange}
-                            name="applicationType"
+                            name="projectArchitecture"
                         >
                             <MenuItem value={"micro"}>Microservice</MenuItem>
                             <MenuItem value={"mono"}>Monolithic</MenuItem>

@@ -31,7 +31,8 @@ const initialValues = {
     osImage: 'Ubuntu 18.04',
     osType: 'Debian',
     provider: '',
-    providerList: []
+    providerList: [],
+    projectArchitecture: ''
 }
 
 const StepForm = () => {
