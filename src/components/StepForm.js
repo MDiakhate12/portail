@@ -32,7 +32,7 @@ const initialValues = {
     osType: 'Debian',
     provider: '',
     providerList: [],
-    projectArchitecture: ''
+    projectArchitecture: 'micro'
 }
 
 const StepForm = () => {
