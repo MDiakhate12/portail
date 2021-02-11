@@ -80,6 +80,19 @@ const FirstStep = ({
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <FormControl fullWidth>
+                        <InputLabel>Application Architecture</InputLabel>
+                        <Select
+                            value={applicationType || ''}
+                            onChange={handleChange}
+                            name="applicationType"
+                        >
+                            <MenuItem value={"micro"}>Microservice</MenuItem>
+                            <MenuItem value={"mono"}>Monolithic</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <FormControl fullWidth>
                         <InputLabel>Environment</InputLabel>
                         <Select
                             value={environment || ''}
