@@ -130,7 +130,7 @@ const FirstStep = ({
                         required
                     />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                     <TextField
                         fullWidth
                         label="techRequirements"
@@ -144,7 +144,7 @@ const FirstStep = ({
                         // helperText={formErrors.dependencies}
                         required
                     />
-                </Grid>
+                </Grid> */}
 
                 <Grid item xs={12} sm={6}>
                     <TextField
