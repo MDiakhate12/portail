@@ -11,7 +11,6 @@ import Chip from '@material-ui/core/Chip';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
-        margin: theme.spacing(1),
         minWidth: 120,
     },
     chips: {
@@ -37,11 +36,6 @@ const MenuProps = {
     },
 };
 
-const names = [
-    "nginx",
-    "nodejs",
-    "mongodb"
-];
 
 function getStyles(name, selectedValues, theme) {
     return {
@@ -52,7 +46,7 @@ function getStyles(name, selectedValues, theme) {
     };
 }
 
-export default function MultipleCheckSelect({inputValue, handleChange, inputName, inputTitle}) {
+export default function MultipleCheckSelect({inputValue, handleChange, inputName, inputTitle, names}) {
     const classes = useStyles();
     const theme = useTheme();
     
@@ -84,9 +78,9 @@ export default function MultipleCheckSelect({inputValue, handleChange, inputName
                     MenuProps={MenuProps}
                 >
                     {names.map((name) => (
-                        <MenuItem key={name} value={name} style={getStyles(name, selectedValues, theme)}>
-                            <Checkbox checked={selectedValues.indexOf(name) > -1} />
-                            <ListItemText primary={name} />
+                        <MenuItem key={name.value} value={name.value} style={getStyles(name.value, selectedValues, theme)}>
+                            <Checkbox checked={selectedValues.indexOf(name.value) > -1} />
+                            <ListItemText primary={name.display} />
                         </MenuItem>
                     ))}
                     

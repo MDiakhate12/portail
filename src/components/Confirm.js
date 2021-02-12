@@ -26,7 +26,6 @@ const Confirm = ({ handleNext, handleBack, values, handleChange }) => {
         environment,
         dataSize,
         connectedApplications,
-        techRequirements,
         costEstimation,
         cpu,
         disk,
@@ -34,7 +33,9 @@ const Confirm = ({ handleNext, handleBack, values, handleChange }) => {
         numberOfVm,
         osImage,
         osType,
-        provider
+        vmGroupName,
+        provider,
+        projectArchitecture,
     } = values
 
     const [error, setError] = useState('')
@@ -65,13 +66,20 @@ const Confirm = ({ handleNext, handleBack, values, handleChange }) => {
 
                 <Divider />
                 <ListItem>
-                    <ListItemText primary="Nom Project" secondary={projectName} />
+                    <ListItemText primary="Project Name" secondary={projectName} />
                 </ListItem>
 
                 <Divider />
 
                 <ListItem>
                     <ListItemText primary="applicationType" secondary={applicationType} />
+                </ListItem>
+
+                <ListItem>
+                    <ListItemText
+                        primary="Project Architecture"
+                        secondary={projectArchitecture}
+                    />
                 </ListItem>
 
                 <Divider />
@@ -108,13 +116,6 @@ const Confirm = ({ handleNext, handleBack, values, handleChange }) => {
                 </ListItem>
 
                 <Divider />
-
-                <ListItem>
-                    <ListItemText
-                        primary="techRequirements"
-                        secondary={techRequirements}
-                    />
-                </ListItem>
 
                 <Divider />
 
