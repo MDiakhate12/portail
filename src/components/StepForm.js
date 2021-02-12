@@ -22,7 +22,6 @@ const initialValues = {
     environment: 'prod',
     dataSize: '',
     connectedApplications: 'DiafApplications',
-    // techRequirements: 'DiafRequirements',
     costEstimation: 777777,
     vmGroupName: 'diaf-vm',
     cpu: 2,
