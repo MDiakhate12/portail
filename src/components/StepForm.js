@@ -74,7 +74,7 @@ const StepForm = () => {
               style={{ margin: '10px 0' }}
             >
               Cette platforme vous permet de faire le provisionning dans le
-              cloud le plus propice - DIAF WALABOOK !!!
+              cloud le plus propice.
             </Typography>
           </Box>
           <Stepper
