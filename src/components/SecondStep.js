@@ -9,18 +9,18 @@ import Select from '@material-ui/core/Select'
 import axios from 'axios'
 import { InputAdornment } from '@material-ui/core'
 import { handleChange } from '../store/actions/actions'
-import { AppContext } from '../App'
+import { GlobalContext } from '../store/providers/GlobalProvider'
 
 const SecondStep = ({ handleNext, handleBack }) => {
-  const { state, dispatch } = useContext(AppContext)
-  const { cpu, disk, memory, numberOfVm, osImage, osType, vmGroupName } = state
+  const { formState, formDispatch } = useContext(GlobalContext)
+  const { cpu, disk, memory, numberOfVm, osImage, osType, vmGroupName } = formState
 
   const handleSubmit = () => {
-    console.log('FROM SECOND STEP:', state)
+    console.log('FROM SECOND STEP:', formState)
 
     // GET CLOUD PROVIDERS ORIENTATION LIST
     axios
-      .post('https://faas-cloud-backend.mouhammad.ml/provider-list', state)
+      .post('https://faas-cloud-backend.mouhammad.ml/provider-list', formState)
       .then((res) => {
         console.log(res.data)
         let providers = res.data.providers.map((provider) => ({
@@ -42,7 +42,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
             { value: 'openstack', label: 'OPENSTACK (ON PREMISE)' },
           ]
         }
-        dispatch(
+        formDispatch(
           handleChange({
             target: {
               name: 'providerList',
@@ -50,7 +50,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
             },
           }),
         )
-        dispatch(
+        formDispatch(
           handleChange({
             target: {
               name: 'provider',
@@ -68,7 +68,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
       <Grid container spacing={3}>
         <Grid item xs={12} sm={4}>
           <TextField
-            onChange={(e) => dispatch(handleChange(e))}
+            onChange={(e) => formDispatch(handleChange(e))}
             value={vmGroupName || ''}
             required
             id="vmGroupName"
@@ -86,7 +86,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
               required
               labelId="os-type"
               value={osType || ''}
-              onChange={(e) => dispatch(handleChange(e))}
+              onChange={(e) => formDispatch(handleChange(e))}
               id="os-type"
               name="osType"
             >
@@ -101,7 +101,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
             <Select
               required
               labelId="os-image"
-              onChange={(e) => dispatch(handleChange(e))}
+              onChange={(e) => formDispatch(handleChange(e))}
               value={osImage}
               id="os-image"
               name="osImage"
@@ -126,7 +126,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
             <InputLabel>vCPU</InputLabel>
             <Select
               value={cpu || ''}
-              onChange={(e) => dispatch(handleChange(e))}
+              onChange={(e) => formDispatch(handleChange(e))}
               name="cpu"
             >
               <MenuItem value={2}>2</MenuItem>
@@ -141,7 +141,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
             <InputLabel>Memory</InputLabel>
             <Select
               value={memory || ''}
-              onChange={(e) => dispatch(handleChange(e))}
+              onChange={(e) => formDispatch(handleChange(e))}
               name="memory"
               startAdornment={
                 <InputAdornment position="start">GB</InputAdornment>
@@ -159,7 +159,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
             required
             type="number"
             value={disk || ''}
-            onChange={(e) => dispatch(handleChange(e))}
+            onChange={(e) => formDispatch(handleChange(e))}
             id="disk"
             name="disk"
             label="Disque"
@@ -177,7 +177,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
         <Grid item xs={12} sm={4}>
           <TextField
             type="number"
-            onChange={(e) => dispatch(handleChange(e))}
+            onChange={(e) => formDispatch(handleChange(e))}
             value={numberOfVm || ''}
             required
             id="vmNumber"

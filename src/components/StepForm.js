@@ -10,6 +10,7 @@ import Confirm from './Confirm'
 import Success from './Success'
 import ThirdStep from './ThirdStep'
 import { AppContext } from '../App'
+import { GlobalContext } from '../store/providers/GlobalProvider'
 // import formValidation from '../Helper/formValidation'
 
 // Step titles
@@ -22,7 +23,7 @@ const labels = [
 
 const StepForm = () => {
   const [activeStep, setActiveStep] = useState(0)
-  const { state } = useContext(AppContext)
+  const { formState } = useContext(GlobalContext)
 
   // const [formErrors, setFormErrors] = useState({})
 
@@ -61,7 +62,7 @@ const StepForm = () => {
     <>
       {activeStep === labels.length ? (
         // Last Component
-        <Success values={state} />
+        <Success values={formState} />
       ) : (
         <>
           <Box style={{ margin: '30px 0 50px' }}>

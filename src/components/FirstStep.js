@@ -11,11 +11,11 @@ import {
 } from '@material-ui/core'
 import MultipleCheckSelect from './MultipleCheckSelect'
 import { handleChange } from '../store/actions/actions'
-import { AppContext } from '../App'
+import { GlobalContext } from '../store/providers/GlobalProvider'
 
 // Destructuring props
 const FirstStep = ({ handleNext }) => {
-  const { state, dispatch } = useContext(AppContext)
+  const { formState, formDispatch } = useContext(GlobalContext)
   const {
     projectName,
     applicationType,
@@ -25,7 +25,7 @@ const FirstStep = ({ handleNext }) => {
     connectedApplications,
     projectArchitecture,
     costEstimation,
-  } = state
+  } = formState
 
   return (
     <Fragment>
@@ -37,7 +37,7 @@ const FirstStep = ({ handleNext }) => {
             name="projectName"
             placeholder="Your project name"
             value={projectName || ''}
-            onChange={(e) => dispatch(handleChange(e))}
+            onChange={(e) => formDispatch(handleChange(e))}
             // error={!!formErrors.projectName}
             // helperText={formErrors.projectName}
             required
@@ -52,7 +52,7 @@ const FirstStep = ({ handleNext }) => {
             placeholder="12000 M"
             type="string"
             value={costEstimation || ''}
-            onChange={(e) => dispatch(handleChange(e))}
+            onChange={(e) => formDispatch(handleChange(e))}
             // error={!!formErrors.dependencies}
             // helperText={formErrors.dependencies}
             required
@@ -69,7 +69,7 @@ const FirstStep = ({ handleNext }) => {
             <InputLabel>Application Type</InputLabel>
             <Select
               value={applicationType || ''}
-              onChange={(e) => dispatch(handleChange(e))}
+              onChange={(e) => formDispatch(handleChange(e))}
               name="applicationType"
             >
               <MenuItem value={'dev'}>Development</MenuItem>
@@ -83,7 +83,7 @@ const FirstStep = ({ handleNext }) => {
             <InputLabel>Project Architecture</InputLabel>
             <Select
               value={projectArchitecture || ''}
-              onChange={(e) => dispatch(handleChange(e))}
+              onChange={(e) => formDispatch(handleChange(e))}
               name="projectArchitecture"
             >
               <MenuItem value={'micro'}>Microservice</MenuItem>
@@ -96,7 +96,7 @@ const FirstStep = ({ handleNext }) => {
             <InputLabel>Environment</InputLabel>
             <Select
               value={environment || ''}
-              onChange={(e) => dispatch(handleChange(e))}
+              onChange={(e) => formDispatch(handleChange(e))}
               name="environment"
             >
               <MenuItem value={'prod'}>Production</MenuItem>
@@ -110,7 +110,7 @@ const FirstStep = ({ handleNext }) => {
             <InputLabel>SLA</InputLabel>
             <Select
               value={SLA || ''}
-              onChange={(e) => dispatch(handleChange(e))}
+              onChange={(e) => formDispatch(handleChange(e))}
               name="SLA"
             >
               <MenuItem value={'2'}>Max 2 Hours Downtime</MenuItem>

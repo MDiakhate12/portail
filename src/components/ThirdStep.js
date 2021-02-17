@@ -8,7 +8,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormLabel from '@material-ui/core/FormLabel'
 import { Box } from '@material-ui/core'
 import { handleChange } from '../store/actions/actions'
-import { AppContext } from '../App'
+import { GlobalContext } from '../store/providers/GlobalProvider'
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -27,13 +27,13 @@ const useStyles = makeStyles((theme) => ({
 // Destructuring props
 const ThirdStep = ({ handleNext, handleBack }) => {
   const classes = useStyles()
-  const { state, dispatch } = useContext(AppContext)
-  const { provider, providerList } = state
+  const { formState, formDispatch } = useContext(GlobalContext)
+  const { provider, providerList } = formState
   const [value, setValue] = useState(provider)
 
   const onChange = (event) => {
     setValue(event.target.value)
-    dispatch(handleChange(event))
+    formDispatch(handleChange(event))
   }
 
   return (

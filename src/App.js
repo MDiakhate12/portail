@@ -1,21 +1,15 @@
-import React, { useReducer, createContext } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
-import reducer, { initialState } from './store/reducers/form'
 import Dashboard from './components/Dashboard'
-
-export const AppContext = createContext('')
+import GlobalProvider from './store/providers/GlobalProvider'
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState)
-  let value = { state, dispatch }
-
-  return (
-    <AppContext.Provider value={value}>
-      <BrowserRouter>
-        <Route path="/" component={Dashboard} />
-      </BrowserRouter>
-    </AppContext.Provider>
-  )
+    return (
+        <GlobalProvider>
+            <BrowserRouter>
+                <Route path="/" component={Dashboard} />
+            </BrowserRouter>
+        </GlobalProvider>
+    )
 }
 
 export default App
