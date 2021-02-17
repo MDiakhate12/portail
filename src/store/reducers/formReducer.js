@@ -8,7 +8,7 @@ export const formInitialState = {
   SLA: 4,
   environment: 'prod',
   dataSize: '',
-  connectedApplications: ['gaia', 'orange-et-moi', 'nessico', 'agassi'],
+  connectedApplications: ['gaia', 'orange-et-moi', 'nessico'],
   costEstimation: 777777,
   vmGroupName: '',
   cpu: 1,

@@ -7,24 +7,24 @@ import BarChartIcon from '@material-ui/icons/BarChart'
 import { Link } from 'react-router-dom'
 
 export const mainListItems = (
-  <div>
-    <Link to={'/'}>
-      <ListItem button>
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
-        <ListItemText primary="Create Project" />
-      </ListItem>
-    </Link>
-    <Link to={'/list-projects'}>
-      <ListItem button>
-        <ListItemIcon>
-          <BarChartIcon />
-        </ListItemIcon>
-        <ListItemText primary="List Project" />
-      </ListItem>
-    </Link>
-  </div>
+    <div>
+        <Link to={'/'} style={{ textDecoration: "none", color: "inherit" }}>
+            <ListItem button>
+                <ListItemIcon>
+                    <DashboardIcon color='primary' />
+                </ListItemIcon>
+                <ListItemText primary="Create Project" />
+            </ListItem>
+        </Link>
+        <Link to={'/list-projects'} style={{ textDecoration: "none", color: "inherit" }}>
+            <ListItem button>
+                <ListItemIcon>
+                    <BarChartIcon color='primary' />
+                </ListItemIcon>
+                <ListItemText primary="List Project" />
+            </ListItem>
+        </Link>
+    </div>
 )
 
 // export const secondaryListItems = (

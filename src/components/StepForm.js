@@ -64,7 +64,7 @@ const StepForm = () => {
         <Success values={formState} />
       ) : (
         <>
-          <Box style={{ margin: '30px 0 50px' }}>
+          <Box style={{ margin: '18px 0 15px' }}>
             <Typography variant="h4" align="center">
               Creation de projet
             </Typography>
@@ -79,7 +79,7 @@ const StepForm = () => {
           </Box>
           <Stepper
             activeStep={activeStep}
-            style={{ margin: '30px 0 15px' }}
+            style={{ margin: '20px 0 13px' }}
             alternativeLabel
           >
             {labels.map((label) => (

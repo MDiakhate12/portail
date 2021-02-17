@@ -1,1 +1,2 @@
 export const FORM_ON_CHANGE = 'FORM_ON_CHANGE'
+export const LOADING_CHANGE = 'LOADING_CHANGE'

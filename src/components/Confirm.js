@@ -8,6 +8,38 @@ import MuiAlert from '@material-ui/lab/Alert'
 import axios from 'axios'
 import { GlobalContext } from '../store/providers/GlobalProvider'
 import { BASE_URL } from '../App'
+import { Typography, Card, CardContent, Grid, CardHeader, Avatar, makeStyles, CardActions } from '@material-ui/core'
+import StorageIcon from '@material-ui/icons/Storage';
+import DescriptionIcon from '@material-ui/icons/Description';
+import clsx from 'clsx';
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
+import { red } from '@material-ui/core/colors';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        maxWidth: 345,
+    },
+    media: {
+        height: 0,
+        paddingTop: '56.25%', // 16:9
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
+    },
+    avatar: {
+        backgroundColor: red[500],
+    },
+}));
+
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />
@@ -29,6 +61,7 @@ const Confirm = ({ handleNext, handleBack }) => {
         dataSize,
         connectedApplications,
         costEstimation,
+        vmGroupName,
         cpu,
         disk,
         memory,
@@ -75,108 +108,295 @@ const Confirm = ({ handleNext, handleBack }) => {
 
     }
 
+    const classes = useStyles();
+    const [expandedProject, setExpandedProject] = React.useState(false);
+    const [expandedVM, setExpandedVM] = React.useState(false);
+
     return (
         <Fragment>
-            <List disablePadding>
-                <ListItem>
-                    <ListItemText primary="Provider" secondary={provider.toUpperCase()} />
-                </ListItem>
+            <Grid container spacing={3}>
+                <Grid item sm={6}>
+                    <Card>
+                        <CardHeader title="Project" subheader="Project details summary (Click to expand)" avatar={
+                            <Avatar aria-label="recipe" >
+                                <DescriptionIcon color="primary" />
+                            </Avatar>
+                        } action={
+                            <CardActions disableSpacing>
+                                <IconButton
+                                    className={clsx(classes.expand, {
+                                        [classes.expandOpen]: expandedProject,
+                                    })}
+                                    onClick={() => setExpandedProject(!expandedProject)}
+                                    aria-expanded={expandedProject}
+                                    aria-label="show more"
+                                >
+                                    <ExpandMoreIcon />
+                                </IconButton>
+                            </CardActions>
+                        } />
+                        <CardContent>
+                            <List disablePadding touch>
+                                <ListItem button>
+                                    <ListItemText
+                                        primary={
+                                            <Typography
+                                                component="span"
+                                                variant="body1"
+                                                color="primary"
+                                            >
+                                                Provider
+                                            </Typography>}
+                                        secondary={provider.toUpperCase()} />
+                                </ListItem>
+                            </List>
+                        </CardContent>
+                        <Collapse in={expandedProject} timeout="auto" unmountOnExit>
+                            <CardContent>
+                                <List disablePadding touch>
+                                    <ListItem button>
+                                        <ListItemText primary={
+                                            <Typography
+                                                component="span"
+                                                variant="body1"
+                                                color="primary">
+                                                ProjectName
+                                        </Typography>}
+                                            secondary={projectName} />
+                                    </ListItem>
 
-                <Divider />
-                <ListItem>
-                    <ListItemText primary="Project Name" secondary={projectName} />
-                </ListItem>
+                                    <Divider />
 
-                <Divider />
+                                    <ListItem button>
+                                        <ListItemText primary={
+                                            <Typography
+                                                component="span"
+                                                variant="body1"
+                                                color="primary">
+                                                applicationTpe
+                                        </Typography>}
+                                            secondary={applicationType} />
+                                    </ListItem>
 
-                <ListItem>
-                    <ListItemText primary="applicationType" secondary={applicationType} />
-                </ListItem>
+                                    <ListItem button>
+                                        <ListItemText
+                                            primary={
+                                                <Typography
+                                                    component="span"
+                                                    variant="body1"
+                                                    color="primary">
+                                                    ProjectArchiecture
+                                                </Typography>}
+                                            secondary={projectArchitecture}
+                                        />
+                                    </ListItem>
 
-                <ListItem>
-                    <ListItemText
-                        primary="Project Architecture"
-                        secondary={projectArchitecture}
-                    />
-                </ListItem>
+                                    <Divider />
 
-                <Divider />
+                                    <ListItem button>
+                                        <ListItemText primary={
+                                            <Typography
+                                                component="span"
+                                                variant="body1"
+                                                color="primary">
+                                                dependencies
+                                            </Typography>}
+                                            secondary={dependencies} />
+                                    </ListItem>
 
-                <ListItem>
-                    <ListItemText primary="dependencies" secondary={dependencies} />
-                </ListItem>
+                                    <Divider />
 
-                <Divider />
+                                    <ListItem button>
+                                        <ListItemText primary={
+                                            <Typography
+                                                component="span"
+                                                varian1="body2"
+                                                color="primary">
+                                                SLA
+                                            </Typography>}
+                                            secondary={SLA} />
+                                    </ListItem>
 
-                <ListItem>
-                    <ListItemText primary="SLA" secondary={SLA} />
-                </ListItem>
+                                    <Divider />
 
-                <Divider />
+                                    <ListItem button>
+                                        <ListItemText primary={
+                                            <Typography
+                                                component="span"
+                                                variant="body1"
+                                                color="primary">
+                                                environment
+                                            </Typography>}
+                                            secondary={environment} />
+                                    </ListItem>
 
-                <ListItem>
-                    <ListItemText primary="environment" secondary={environment} />
-                </ListItem>
+                                    <Divider />
 
-                <Divider />
+                                    <ListItem button>
+                                        <ListItemText primary={
+                                            <Typography
+                                                component="span"
+                                                variant="body1"
+                                                color="primary">
+                                                dataSize
+                                            </Typography>}
+                                            secondary={dataSize} />
+                                    </ListItem>
 
-                <ListItem>
-                    <ListItemText primary="dataSize" secondary={dataSize} />
-                </ListItem>
+                                    <Divider />
 
-                <Divider />
+                                    <ListItem button>
+                                        <ListItemText
+                                            primary={
+                                                <Typography
+                                                    component="span"
+                                                    variant="body1"
+                                                    color="primary">
+                                                    connectedApplcations
+                                                </Typography>}
+                                            secondary={connectedApplications}
+                                        />
+                                    </ListItem>
 
-                <ListItem>
-                    <ListItemText
-                        primary="connectedApplications"
-                        secondary={connectedApplications}
-                    />
-                </ListItem>
+                                    <Divider />
 
-                <Divider />
+                                    <ListItem button>
+                                        <ListItemText primary={
+                                            <Typography
+                                                component="span"
+                                                variant="body1"
+                                                color="primary">
+                                                costEstimation
+                                        </Typography>}
+                                            secondary={costEstimation} />
+                                    </ListItem>
+                                </List>
+                            </CardContent>
+                        </Collapse>
+                    </Card>
 
-                <Divider />
+                </Grid>
+                <Grid item sm={6}>
+                    <Card>
+                        <CardHeader title="VM Instances" subheader="VM Instances details (Click to expand)" avatar={
+                            <Avatar aria-label="recipe">
+                                <StorageIcon color='primary' />
+                            </Avatar>
+                        } action={
+                            <CardActions disableSpacing>
+                                <IconButton
+                                    className={clsx(classes.expand, {
+                                        [classes.expandOpen]: expandedVM,
+                                    })}
+                                    onClick={() => setExpandedVM(!expandedVM)}
+                                    aria-expanded={expandedVM}
+                                    aria-label="show more"
+                                >
+                                    <ExpandMoreIcon />
+                                </IconButton>
+                            </CardActions>
+                        } />
+                        <CardContent>
+                            <List disablePadding touch>
+                                <ListItem button>
+                                    <ListItemText
+                                        primary={
+                                            <Typography
+                                                component="span"
+                                                varian1="body1"
+                                                color="primary">
+                                                Instance Group Name
+                                        </Typography>}
+                                        secondary={vmGroupName} />
+                                </ListItem>
+                            </List>
+                        </CardContent>
+                        <Collapse in={expandedVM} timeout="auto" unmountOnExit>
+                            <CardContent >
+                                <List disablePadding touch>
+                                    <ListItem button>
+                                        <ListItemText primary={
+                                            <Typography
+                                                component="span"
+                                                varian1="body1"
+                                                color="primary">
+                                                cpu
+                                            </Typography>}
+                                            secondary={cpu} />
+                                    </ListItem>
 
-                <ListItem>
-                    <ListItemText primary="costEstimation" secondary={costEstimation} />
-                </ListItem>
+                                    <Divider />
 
-                <Divider />
+                                    <ListItem button>
+                                        <ListItemText primary={
+                                            <Typography
+                                                component="span"
+                                                variant="body1"
+                                                color="primary">
+                                                disk
+                                            </Typography>}
+                                            secondary={disk} />
+                                    </ListItem>
 
-                <ListItem>
-                    <ListItemText primary="cpu" secondary={cpu} />
-                </ListItem>
+                                    <Divider />
 
-                <Divider />
+                                    <ListItem button>
+                                        <ListItemText primary={
+                                            <Typography
+                                                component="span"
+                                                variant="body1"
+                                                color="primary">
+                                                memory
+                                            </Typography>}
+                                            secondary={memory} />
+                                    </ListItem>
 
-                <ListItem>
-                    <ListItemText primary="disk" secondary={disk} />
-                </ListItem>
+                                    <Divider />
 
-                <Divider />
+                                    <ListItem button>
+                                        <ListItemText primary={
+                                            <Typography
+                                                component="span"
+                                                variant="body1"
+                                                color="primary">
+                                                numberOfVm
+                                        </Typography>}
+                                            secondary={numberOfVm} />
+                                    </ListItem>
 
-                <ListItem>
-                    <ListItemText primary="memory" secondary={memory} />
-                </ListItem>
+                                    <Divider />
 
-                <Divider />
+                                    <ListItem button>
+                                        <ListItemText primary={
+                                            <Typography
+                                                component="span"
+                                                variant="body1"
+                                                color="primary">
+                                                osImage
+                                        </Typography>}
+                                            secondary={osImage} />
+                                    </ListItem>
 
-                <ListItem>
-                    <ListItemText primary="numberOfVm" secondary={numberOfVm} />
-                </ListItem>
+                                    <Divider />
 
-                <Divider />
+                                    <ListItem button>
+                                        <ListItemText primary={
+                                            <Typography
+                                                component="span"
+                                                variant="body1"
+                                                color="primary">
+                                                osType
+                                            </Typography>}
+                                            secondary={osType} />
+                                    </ListItem>
+                                </List>
+                            </CardContent>
+                        </Collapse>
+                    </Card>
 
-                <ListItem>
-                    <ListItemText primary="osImage" secondary={osImage} />
-                </ListItem>
+                </Grid>
+            </Grid>
 
-                <Divider />
-
-                <ListItem>
-                    <ListItemText primary="osType" secondary={osType} />
-                </ListItem>
-            </List>
 
             <div
                 style={{ display: 'flex', marginTop: 50, justifyContent: 'flex-end' }}
@@ -187,7 +407,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                 <Button
                     style={{ marginLeft: 10 }}
                     variant="contained"
-                    color="secondary"
+                    color="primary"
                     onClick={handleSubmit}
                 >
                     Confirm & Continue
