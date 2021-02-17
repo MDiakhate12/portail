@@ -6,181 +6,201 @@ import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
 import MuiAlert from '@material-ui/lab/Alert'
 import axios from 'axios'
-import { AppContext } from '../App'
+import { GlobalContext } from '../store/providers/GlobalProvider'
+import { BASE_URL } from '../App'
 
 function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />
+    return <MuiAlert elevation={6} variant="filled" {...props} />
 }
 
 const Confirm = ({ handleNext, handleBack }) => {
-  const { state } = useContext(AppContext)
+    const { formState } = useContext(GlobalContext)
 
-  useEffect(() => {
-    console.log(state)
-  })
+    useEffect(() => {
+        console.log(formState)
+    })
 
-  const {
-    projectName,
-    applicationType,
-    dependencies,
-    SLA,
-    environment,
-    dataSize,
-    connectedApplications,
-    costEstimation,
-    cpu,
-    disk,
-    memory,
-    numberOfVm,
-    osImage,
-    osType,
-    provider,
-    projectArchitecture,
-  } = state
+    const {
+        projectName,
+        applicationType,
+        dependencies,
+        SLA,
+        environment,
+        dataSize,
+        connectedApplications,
+        costEstimation,
+        cpu,
+        disk,
+        memory,
+        numberOfVm,
+        osImage,
+        osType,
+        provider,
+        projectArchitecture,
+    } = formState
 
-  const [error, setError] = useState('')
+    const [error, setError] = useState('')
 
-  const handleSubmit = () => {
-    axios
-      .post('https://faas-cloud-backend.mouhammad.ml/', state)
-      .then((res) => {
-        console.log(res.data)
-        if (typeof res.data === 'string') {
-          setError(res.data)
-        } else {
-          console.log(res.data)
-          handleNext()
+    const createVM = async () => {
+        axios
+            .post(`${BASE_URL}/create-vm`, formState)
+            .then((res) => {
+                console.log(res.data)
+            })
+            .catch((err) => console.log(err))
+    }
+
+    const registerVM = async () => {
+        axios
+            .post(`${BASE_URL}/register-vm`, formState)
+            .then((res) => {
+                console.log(res.data)
+                if (typeof res.data === 'string') {
+                    setError(res.data)
+                } else {
+                    console.log(res.data)
+                    handleNext()
+                }
+            })
+            .catch((err) => console.log(err))
+    }
+
+    const handleSubmit = async () => {
+        try {
+            await registerVM();
+            await createVM();
+        } catch (error) {
+            console.log(error.message)
         }
-      })
-      .catch((err) => console.log(err))
-  }
 
-  return (
-    <Fragment>
-      <List disablePadding>
-        <ListItem>
-          <ListItemText primary="Provider" secondary={provider.toUpperCase()} />
-        </ListItem>
+    }
 
-        <Divider />
-        <ListItem>
-          <ListItemText primary="Project Name" secondary={projectName} />
-        </ListItem>
+    return (
+        <Fragment>
+            <List disablePadding>
+                <ListItem>
+                    <ListItemText primary="Provider" secondary={provider.toUpperCase()} />
+                </ListItem>
 
-        <Divider />
+                <Divider />
+                <ListItem>
+                    <ListItemText primary="Project Name" secondary={projectName} />
+                </ListItem>
 
-        <ListItem>
-          <ListItemText primary="applicationType" secondary={applicationType} />
-        </ListItem>
+                <Divider />
 
-        <ListItem>
-          <ListItemText
-            primary="Project Architecture"
-            secondary={projectArchitecture}
-          />
-        </ListItem>
+                <ListItem>
+                    <ListItemText primary="applicationType" secondary={applicationType} />
+                </ListItem>
 
-        <Divider />
+                <ListItem>
+                    <ListItemText
+                        primary="Project Architecture"
+                        secondary={projectArchitecture}
+                    />
+                </ListItem>
 
-        <ListItem>
-          <ListItemText primary="dependencies" secondary={dependencies} />
-        </ListItem>
+                <Divider />
 
-        <Divider />
+                <ListItem>
+                    <ListItemText primary="dependencies" secondary={dependencies} />
+                </ListItem>
 
-        <ListItem>
-          <ListItemText primary="SLA" secondary={SLA} />
-        </ListItem>
+                <Divider />
 
-        <Divider />
+                <ListItem>
+                    <ListItemText primary="SLA" secondary={SLA} />
+                </ListItem>
 
-        <ListItem>
-          <ListItemText primary="environment" secondary={environment} />
-        </ListItem>
+                <Divider />
 
-        <Divider />
+                <ListItem>
+                    <ListItemText primary="environment" secondary={environment} />
+                </ListItem>
 
-        <ListItem>
-          <ListItemText primary="dataSize" secondary={dataSize} />
-        </ListItem>
+                <Divider />
 
-        <Divider />
+                <ListItem>
+                    <ListItemText primary="dataSize" secondary={dataSize} />
+                </ListItem>
 
-        <ListItem>
-          <ListItemText
-            primary="connectedApplications"
-            secondary={connectedApplications}
-          />
-        </ListItem>
+                <Divider />
 
-        <Divider />
+                <ListItem>
+                    <ListItemText
+                        primary="connectedApplications"
+                        secondary={connectedApplications}
+                    />
+                </ListItem>
 
-        <Divider />
+                <Divider />
 
-        <ListItem>
-          <ListItemText primary="costEstimation" secondary={costEstimation} />
-        </ListItem>
+                <Divider />
 
-        <Divider />
+                <ListItem>
+                    <ListItemText primary="costEstimation" secondary={costEstimation} />
+                </ListItem>
 
-        <ListItem>
-          <ListItemText primary="cpu" secondary={cpu} />
-        </ListItem>
+                <Divider />
 
-        <Divider />
+                <ListItem>
+                    <ListItemText primary="cpu" secondary={cpu} />
+                </ListItem>
 
-        <ListItem>
-          <ListItemText primary="disk" secondary={disk} />
-        </ListItem>
+                <Divider />
 
-        <Divider />
+                <ListItem>
+                    <ListItemText primary="disk" secondary={disk} />
+                </ListItem>
 
-        <ListItem>
-          <ListItemText primary="memory" secondary={memory} />
-        </ListItem>
+                <Divider />
 
-        <Divider />
+                <ListItem>
+                    <ListItemText primary="memory" secondary={memory} />
+                </ListItem>
 
-        <ListItem>
-          <ListItemText primary="numberOfVm" secondary={numberOfVm} />
-        </ListItem>
+                <Divider />
 
-        <Divider />
+                <ListItem>
+                    <ListItemText primary="numberOfVm" secondary={numberOfVm} />
+                </ListItem>
 
-        <ListItem>
-          <ListItemText primary="osImage" secondary={osImage} />
-        </ListItem>
+                <Divider />
 
-        <Divider />
+                <ListItem>
+                    <ListItemText primary="osImage" secondary={osImage} />
+                </ListItem>
 
-        <ListItem>
-          <ListItemText primary="osType" secondary={osType} />
-        </ListItem>
-      </List>
+                <Divider />
 
-      <div
-        style={{ display: 'flex', marginTop: 50, justifyContent: 'flex-end' }}
-      >
-        <Button variant="contained" color="default" onClick={handleBack}>
-          Back
+                <ListItem>
+                    <ListItemText primary="osType" secondary={osType} />
+                </ListItem>
+            </List>
+
+            <div
+                style={{ display: 'flex', marginTop: 50, justifyContent: 'flex-end' }}
+            >
+                <Button variant="contained" color="default" onClick={handleBack}>
+                    Back
         </Button>
-        <Button
-          style={{ marginLeft: 10 }}
-          variant="contained"
-          color="secondary"
-          onClick={handleSubmit}
-        >
-          Confirm & Continue
+                <Button
+                    style={{ marginLeft: 10 }}
+                    variant="contained"
+                    color="secondary"
+                    onClick={handleSubmit}
+                >
+                    Confirm & Continue
         </Button>
-      </div>
+            </div>
 
-      {error && (
-        <Alert severity="error" onClick={() => setError(null)}>
-          {error}
-        </Alert>
-      )}
-    </Fragment>
-  )
+            {error && (
+                <Alert severity="error" onClick={() => setError(null)}>
+                    {error}
+                </Alert>
+            )}
+        </Fragment>
+    )
 }
 
 export default Confirm

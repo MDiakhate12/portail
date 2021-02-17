@@ -9,7 +9,6 @@ import SecondStep from './SecondStep'
 import Confirm from './Confirm'
 import Success from './Success'
 import ThirdStep from './ThirdStep'
-import { AppContext } from '../App'
 import { GlobalContext } from '../store/providers/GlobalProvider'
 // import formValidation from '../Helper/formValidation'
 

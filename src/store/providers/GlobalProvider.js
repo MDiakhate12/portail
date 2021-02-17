@@ -1,11 +1,11 @@
-import React, { useReducer, createContext } from 'react'
-import { formReducer, formInitialState } from './store/reducers/form'
+import { useReducer, createContext } from 'react'
+import { formReducer, formInitialState } from '../reducers/formReducer'
 
 export const GlobalContext = createContext()
 
 export default function GlobalProvider({ children }) {
 
-    const [{ formState }, formDispatch] = useReducer(formReducer, formInitialState);
+    const [formState , formDispatch] = useReducer(formReducer, formInitialState);
 
     return (
         <GlobalContext.Provider value={{

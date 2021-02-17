@@ -9,7 +9,7 @@ import Select from '@material-ui/core/Select'
 import Checkbox from '@material-ui/core/Checkbox'
 import Chip from '@material-ui/core/Chip'
 import { handleChange } from '../store/actions/actions'
-import { AppContext } from '../App'
+import { GlobalContext } from '../store/providers/GlobalProvider'
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -48,14 +48,14 @@ function getStyles(name, selectedValues, theme) {
 }
 
 export default function MultipleCheckSelect({ inputName, inputTitle, names }) {
-  const { dispatch } = useContext(AppContext)
+  const { formDispatch } = useContext(GlobalContext)
   const classes = useStyles()
   const theme = useTheme()
 
   const [selectedValues, setSelectedValues] = useState([])
   const onChange = (event) => {
     setSelectedValues(event.target.value)
-    dispatch(handleChange(event))
+    formDispatch(handleChange(event))
   }
   return (
     <div>

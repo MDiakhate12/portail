@@ -4,16 +4,16 @@ import { updateObject } from '../utility'
 export const formInitialState = {
   projectName: 'DiafProject',
   applicationType: 'dev',
-  dependencies: [],
+  dependencies: ['nginx', 'nodejs'],
   SLA: 4,
   environment: 'prod',
   dataSize: '',
-  connectedApplications: 'DiafApplications',
+  connectedApplications: ['gaia', 'orange-et-moi', 'nessico', 'agassi'],
   costEstimation: 777777,
-  vmGroupName: 'walabok-vm',
-  cpu: 2,
+  vmGroupName: '',
+  cpu: 1,
   disk: 10,
-  memory: 4 * 1024,
+  memory: 1 * 1024,
   numberOfVm: 1,
   osImage: 'debian-10',
   osType: 'debian-cloud',
@@ -28,7 +28,7 @@ const handleChange = (state, action) => {
   })
 }
 
-const formReducer = (state, action) => {
+export const formReducer = (state, action) => {
   switch (action.type) {
     case actionType.FORM_ON_CHANGE:
       return handleChange(state, action)
@@ -36,5 +36,3 @@ const formReducer = (state, action) => {
       return state
   }
 }
-
-export default formReducer
