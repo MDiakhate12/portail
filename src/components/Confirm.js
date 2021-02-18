@@ -44,7 +44,12 @@ const useStyles = makeStyles((theme) => ({
     cardContent: {
         paddingTop: "0px",
         paddingBottom: "0px"
+    },
+    listItemText: {
+        marginTop: "2px",
+        marginBottom: "2px",
     }
+
 }));
 
 
@@ -154,7 +159,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                     button
                                     onClick={() => setExpandedProject(!expandedProject)}
                                 >
-                                    <ListItemText
+                                    <ListItemText className={classes.listItemText}
                                         primary={
                                             <Typography
                                                 component="span"
@@ -174,7 +179,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                             >
                                 <List disablePadding touch>
                                     <ListItem button>
-                                        <ListItemText primary={
+                                        <ListItemText className={classes.listItemText} primary={
                                             <Typography
                                                 component="span"
                                                 variant="body1"
@@ -187,7 +192,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                     <Divider />
 
                                     <ListItem button>
-                                        <ListItemText primary={
+                                        <ListItemText className={classes.listItemText} primary={
                                             <Typography
                                                 component="span"
                                                 variant="body1"
@@ -200,7 +205,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                     <Divider />
 
                                     <ListItem button>
-                                        <ListItemText
+                                        <ListItemText className={classes.listItemText}
                                             primary={
                                                 <Typography
                                                     component="span"
@@ -215,7 +220,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                     <Divider />
 
                                     <ListItem button>
-                                        <ListItemText primary={
+                                        <ListItemText className={classes.listItemText} primary={
                                             <Typography
                                                 component="span"
                                                 variant="body1"
@@ -228,7 +233,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                     <Divider />
 
                                     <ListItem button>
-                                        <ListItemText primary={
+                                        <ListItemText className={classes.listItemText} primary={
                                             <Typography
                                                 component="span"
                                                 varian1="body2"
@@ -241,7 +246,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                     <Divider />
 
                                     <ListItem button>
-                                        <ListItemText primary={
+                                        <ListItemText className={classes.listItemText} primary={
                                             <Typography
                                                 component="span"
                                                 variant="body1"
@@ -254,7 +259,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                     <Divider />
 
                                     <ListItem button>
-                                        <ListItemText primary={
+                                        <ListItemText className={classes.listItemText} primary={
                                             <Typography
                                                 component="span"
                                                 variant="body1"
@@ -267,7 +272,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                     <Divider />
 
                                     <ListItem button>
-                                        <ListItemText
+                                        <ListItemText className={classes.listItemText}
                                             primary={
                                                 <Typography
                                                     component="span"
@@ -282,7 +287,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                     <Divider />
 
                                     <ListItem button>
-                                        <ListItemText primary={
+                                        <ListItemText className={classes.listItemText} primary={
                                             <Typography
                                                 component="span"
                                                 variant="body1"
@@ -329,7 +334,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                     button
                                     onClick={() => setExpandedVM(!expandedVM)}
                                 >
-                                    <ListItemText
+                                    <ListItemText className={classes.listItemText}
                                         primary={
                                             <Typography
                                                 component="span"
@@ -348,7 +353,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                             >
                                 <List disablePadding touch>
                                     <ListItem button>
-                                        <ListItemText primary={
+                                        <ListItemText className={classes.listItemText} primary={
                                             <Typography
                                                 component="span"
                                                 varian1="body1"
@@ -361,7 +366,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                     <Divider />
 
                                     <ListItem button>
-                                        <ListItemText primary={
+                                        <ListItemText className={classes.listItemText} primary={
                                             <Typography
                                                 component="span"
                                                 variant="body1"
@@ -374,7 +379,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                     <Divider />
 
                                     <ListItem button>
-                                        <ListItemText primary={
+                                        <ListItemText className={classes.listItemText} primary={
                                             <Typography
                                                 component="span"
                                                 variant="body1"
@@ -387,7 +392,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                     <Divider />
 
                                     <ListItem button>
-                                        <ListItemText primary={
+                                        <ListItemText className={classes.listItemText} primary={
                                             <Typography
                                                 component="span"
                                                 variant="body1"
@@ -400,7 +405,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                     <Divider />
 
                                     <ListItem button>
-                                        <ListItemText primary={
+                                        <ListItemText className={classes.listItemText} primary={
                                             <Typography
                                                 component="span"
                                                 variant="body1"
@@ -413,7 +418,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                     <Divider />
 
                                     <ListItem button>
-                                        <ListItemText primary={
+                                        <ListItemText className={classes.listItemText} primary={
                                             <Typography
                                                 component="span"
                                                 variant="body1"
