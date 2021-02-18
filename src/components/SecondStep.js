@@ -7,11 +7,10 @@ import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import axios from 'axios'
-import { InputAdornment, CircularProgress, Box } from '@material-ui/core'
+import { InputAdornment, CircularProgress, Box, LinearProgress } from '@material-ui/core'
 import { handleChange } from '../store/actions/actions'
 import { GlobalContext } from '../store/providers/GlobalProvider'
 import { BASE_URL } from '../App'
-import { LOADING_CHANGE } from '../store/actions/actions_types'
 
 const SecondStep = ({ handleNext, handleBack }) => {
     const { formState, formDispatch, setLoading, loading } = useContext(GlobalContext)
@@ -78,14 +77,16 @@ const SecondStep = ({ handleNext, handleBack }) => {
                         display="flex"
                         alignItems="center"
                         justifyContent="center"
+                        marginTop={10}
                     >
-                        <CircularProgress />
+                        <CircularProgress size={70} />
                     </Box>
                     :
                     <>
                         <Grid container spacing={3} style={{ padding: "5px 12px 5px 12px" }}>
                             <Grid item xs={12} sm={4}>
                                 <TextField
+                                    variant="filled"
                                     onChange={(e) => formDispatch(handleChange(e))}
                                     value={vmGroupName || ''}
                                     required
@@ -98,7 +99,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
                             </Grid>
 
                             <Grid item sm={4}>
-                                <FormControl fullWidth>
+                                <FormControl variant="filled" fullWidth>
                                     <InputLabel id="os-type">Os Type</InputLabel>
                                     <Select
                                         required
@@ -114,7 +115,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
                                 </FormControl>
                             </Grid>
                             <Grid item sm={4}>
-                                <FormControl fullWidth>
+                                <FormControl variant="filled" fullWidth>
                                     <InputLabel id="os-image">Os Image</InputLabel>
                                     <Select
                                         required
@@ -140,7 +141,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12} sm={4}>
-                                <FormControl fullWidth>
+                                <FormControl variant="filled" fullWidth>
                                     <InputLabel>vCPU</InputLabel>
                                     <Select
                                         value={cpu || ''}
@@ -156,7 +157,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
                             </Grid>
 
                             <Grid item xs={12} sm={4}>
-                                <FormControl fullWidth>
+                                <FormControl variant="filled" fullWidth>
                                     <InputLabel>Memory</InputLabel>
                                     <Select
                                         value={memory || ''}
@@ -176,6 +177,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
                             </Grid>
                             <Grid item sm={4}>
                                 <TextField
+                                    variant="filled"
                                     required
                                     type="number"
                                     value={disk || ''}
@@ -196,6 +198,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
                             </Grid>
                             <Grid item xs={12} sm={4}>
                                 <TextField
+                                    variant="filled"
                                     type="number"
                                     onChange={(e) => formDispatch(handleChange(e))}
                                     value={numberOfVm || ''}

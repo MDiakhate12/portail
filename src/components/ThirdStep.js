@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 // Destructuring props
 const ThirdStep = ({ handleNext, handleBack }) => {
     const classes = useStyles()
-    const { formState, formDispatch, loading, setLoading } = useContext(GlobalContext)
+    const { formState, formDispatch } = useContext(GlobalContext)
     const { provider, providerList } = formState
     const [value, setValue] = useState(provider)
 
@@ -41,80 +41,68 @@ const ThirdStep = ({ handleNext, handleBack }) => {
 
 
         <>
-            {
-                loading === true ?
-                    <Box
-                        width="100%"
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                    >
-                        <LinearProgress color='primary' />
-                    </Box>
-                    :
-                    <>
-                        <Box
-                            width="100%"
-                            display="flex"
-                            alignItems="center"
-                            justifyContent="center"
-                        >
-                            <FormControl component="fieldset" className={classes.formControl}>
-                                <FormLabel component="legend">Select your provider</FormLabel>
-                                <RadioGroup
-                                    aria-label="provider"
-                                    name="provider"
-                                    value={value}
-                                    onChange={onChange}
-                                >
-                                    {providerList.map((providerItem) => {
-                                        if (providerList.indexOf(providerItem) === 0) {
-                                            return (
-                                                <FormControlLabel
-                                                    key={providerItem.label}
-                                                    value={providerItem.value}
-                                                    control={<Radio color='primary' />}
-                                                    label={`${providerItem.label} - RECOMMENDED`}
-                                                />
-                                            )
-                                        }
-                                        return (
-                                            <div>
-                                                <FormControlLabel
-                                                    key={providerItem.label}
-                                                    value={providerItem.value}
-                                                    control={<Radio color='primary' />}
-                                                    label={providerItem.label}
-                                                />
-                                            </div>
 
-                                        )
-                                    })}
-                                </RadioGroup>
-                            </FormControl>
-                        </Box>
-                        <div
-                            style={{ display: 'flex', marginTop: 50, justifyContent: 'flex-end' }}
-                        >
-                            <Button
-                                variant="contained"
-                                color="default"
-                                onClick={handleBack}
-                                style={{ marginRight: 10 }}
-                            >
-                                Back
+            <Box
+                width="100%"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+            >
+                <FormControl component="fieldset" className={classes.formControl}>
+                    <FormLabel component="legend">Select your provider</FormLabel>
+                    <RadioGroup
+                        aria-label="provider"
+                        name="provider"
+                        value={value}
+                        onChange={onChange}
+                    >
+                        {providerList.map((providerItem) => {
+                            if (providerList.indexOf(providerItem) === 0) {
+                                return (
+                                    <FormControlLabel
+                                        key={providerItem.label}
+                                        value={providerItem.value}
+                                        control={<Radio color='primary' />}
+                                        label={`${providerItem.label} - RECOMMENDED`}
+                                    />
+                                )
+                            }
+                            return (
+                                <div>
+                                    <FormControlLabel
+                                        key={providerItem.label}
+                                        value={providerItem.value}
+                                        control={<Radio color='primary' />}
+                                        label={providerItem.label}
+                                    />
+                                </div>
+
+                            )
+                        })}
+                    </RadioGroup>
+                </FormControl>
+            </Box>
+            <div
+                style={{ display: 'flex', marginTop: 50, justifyContent: 'flex-end' }}
+            >
+                <Button
+                    variant="contained"
+                    color="default"
+                    onClick={handleBack}
+                    style={{ marginRight: 10 }}
+                >
+                    Back
                             </Button>
-                            <Button
-                                variant="contained"
-                                // disabled={!isValid}
-                                color="primary"
-                                onClick={handleNext}
-                            >
-                                Next
+                <Button
+                    variant="contained"
+                    // disabled={!isValid}
+                    color="primary"
+                    onClick={handleNext}
+                >
+                    Next
                             </Button>
-                        </div>
-                    </>
-            }
+            </div>
+
         </>
     )
 }

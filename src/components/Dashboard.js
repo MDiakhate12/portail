@@ -38,6 +38,7 @@ const drawerWidth = 240
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
+        height: "100%"
     },
     toolbar: {
         paddingRight: 24, // keep right padding when drawer closed
@@ -96,8 +97,8 @@ const useStyles = makeStyles((theme) => ({
     appBarSpacer: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
-        height: '100vh',
         overflow: 'auto',
+        height: "100%"
     },
     container: {
         paddingTop: theme.spacing(1),
@@ -108,6 +109,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         overflow: 'auto',
         flexDirection: 'column',
+        height: "100%"
     },
     fixedHeight: {
         height: 240,
@@ -185,10 +187,10 @@ function Dashboard() {
                         <Route path="/list-projects" component={ListProject} />
                         <Route path="/project/:projectId/vms" component={ListVM} />
                     </Switch>
-                    <Box pt={4}>
-                        <Copyright />
-                    </Box>
                 </Container>
+                <Box pt={1} style={{ position: "fixed", bottom: "15px", left: "50%" }}>
+                    <Copyright />
+                </Box>
             </main>
         </div>
     )

@@ -10,7 +10,7 @@ export const formInitialState = {
   dataSize: '',
   connectedApplications: ['gaia', 'orange-et-moi', 'nessico'],
   costEstimation: 777777,
-  vmGroupName: '',
+  vmGroupName: 'walabok',
   cpu: 1,
   disk: 10,
   memory: 1 * 1024,

@@ -32,6 +32,7 @@ const FirstStep = ({ handleNext }) => {
             <Grid container spacing={2} noValidate style={{ padding: "5px 12px 5px 12px" }}>
                 <Grid item xs={12} sm={6}>
                     <TextField
+                        variant="filled"
                         fullWidth
                         label="Project Name"
                         name="projectName"
@@ -46,6 +47,7 @@ const FirstStep = ({ handleNext }) => {
 
                 <Grid item xs={12} sm={6}>
                     <TextField
+                        variant="filled"
                         fullWidth
                         label="Cost Estimation"
                         name="costEstimation"
@@ -65,7 +67,7 @@ const FirstStep = ({ handleNext }) => {
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                    <FormControl fullWidth>
+                    <FormControl variant="filled" fullWidth>
                         <InputLabel>Application Type</InputLabel>
                         <Select
                             value={applicationType || ''}
@@ -79,7 +81,7 @@ const FirstStep = ({ handleNext }) => {
                     </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <FormControl fullWidth>
+                    <FormControl variant="filled" fullWidth>
                         <InputLabel>Project Architecture</InputLabel>
                         <Select
                             value={projectArchitecture || ''}
@@ -92,7 +94,7 @@ const FirstStep = ({ handleNext }) => {
                     </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <FormControl fullWidth>
+                    <FormControl variant="filled" fullWidth>
                         <InputLabel>Environment</InputLabel>
                         <Select
                             value={environment || ''}
@@ -106,7 +108,7 @@ const FirstStep = ({ handleNext }) => {
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                    <FormControl fullWidth>
+                    <FormControl variant="filled" fullWidth>
                         <InputLabel>SLA</InputLabel>
                         <Select
                             value={SLA || ''}

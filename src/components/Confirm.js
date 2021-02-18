@@ -38,6 +38,13 @@ const useStyles = makeStyles((theme) => ({
     avatar: {
         backgroundColor: red[500],
     },
+    cardHeader: {
+        paddingBottom: "0px"
+    },
+    cardContent: {
+        paddingTop: "0px",
+        paddingBottom: "0px"
+    }
 }));
 
 
@@ -117,27 +124,36 @@ const Confirm = ({ handleNext, handleBack }) => {
             <Grid container spacing={3}>
                 <Grid item sm={6}>
                     <Card>
-                        <CardHeader title="Project" subheader="Project details summary (Click to expand)" avatar={
-                            <Avatar aria-label="recipe" >
-                                <DescriptionIcon color="primary" />
-                            </Avatar>
-                        } action={
-                            <CardActions disableSpacing>
-                                <IconButton
-                                    className={clsx(classes.expand, {
-                                        [classes.expandOpen]: expandedProject,
-                                    })}
-                                    onClick={() => setExpandedProject(!expandedProject)}
-                                    aria-expanded={expandedProject}
-                                    aria-label="show more"
-                                >
-                                    <ExpandMoreIcon />
-                                </IconButton>
-                            </CardActions>
-                        } />
-                        <CardContent>
+                        <CardHeader
+                            title="Project"
+                            subheader="Project details summary (Click to expand)"
+                            className={classes.cardHeader}
+                            avatar={
+                                <Avatar aria-label="recipe" >
+                                    <DescriptionIcon color="primary" />
+                                </Avatar>
+                            } action={
+                                <CardActions disableSpacing>
+                                    <IconButton
+                                        className={clsx(classes.expand, {
+                                            [classes.expandOpen]: expandedProject,
+                                        })}
+                                        onClick={() => setExpandedProject(!expandedProject)}
+                                        aria-expanded={expandedProject}
+                                        aria-label="show more"
+                                    >
+                                        <ExpandMoreIcon />
+                                    </IconButton>
+                                </CardActions>
+                            } />
+                        <CardContent
+                            className={classes.cardContent}
+                        >
                             <List disablePadding touch>
-                                <ListItem button>
+                                <ListItem
+                                    button
+                                    onClick={() => setExpandedProject(!expandedProject)}
+                                >
                                     <ListItemText
                                         primary={
                                             <Typography
@@ -149,10 +165,13 @@ const Confirm = ({ handleNext, handleBack }) => {
                                             </Typography>}
                                         secondary={provider.toUpperCase()} />
                                 </ListItem>
+                                <Divider />
                             </List>
                         </CardContent>
                         <Collapse in={expandedProject} timeout="auto" unmountOnExit>
-                            <CardContent>
+                            <CardContent
+                                className={classes.cardContent}
+                            >
                                 <List disablePadding touch>
                                     <ListItem button>
                                         <ListItemText primary={
@@ -177,6 +196,8 @@ const Confirm = ({ handleNext, handleBack }) => {
                                         </Typography>}
                                             secondary={applicationType} />
                                     </ListItem>
+
+                                    <Divider />
 
                                     <ListItem button>
                                         <ListItemText
@@ -278,27 +299,36 @@ const Confirm = ({ handleNext, handleBack }) => {
                 </Grid>
                 <Grid item sm={6}>
                     <Card>
-                        <CardHeader title="VM Instances" subheader="VM Instances details (Click to expand)" avatar={
-                            <Avatar aria-label="recipe">
-                                <StorageIcon color='primary' />
-                            </Avatar>
-                        } action={
-                            <CardActions disableSpacing>
-                                <IconButton
-                                    className={clsx(classes.expand, {
-                                        [classes.expandOpen]: expandedVM,
-                                    })}
-                                    onClick={() => setExpandedVM(!expandedVM)}
-                                    aria-expanded={expandedVM}
-                                    aria-label="show more"
-                                >
-                                    <ExpandMoreIcon />
-                                </IconButton>
-                            </CardActions>
-                        } />
-                        <CardContent>
+                        <CardHeader
+                            title="VM Instances"
+                            subheader="VM Instances details (Click to expand)"
+                            className={classes.cardHeader}
+                            avatar={
+                                <Avatar aria-label="recipe">
+                                    <StorageIcon color='primary' />
+                                </Avatar>
+                            } action={
+                                <CardActions disableSpacing>
+                                    <IconButton
+                                        className={clsx(classes.expand, {
+                                            [classes.expandOpen]: expandedVM,
+                                        })}
+                                        onClick={() => setExpandedVM(!expandedVM)}
+                                        aria-expanded={expandedVM}
+                                        aria-label="show more"
+                                    >
+                                        <ExpandMoreIcon />
+                                    </IconButton>
+                                </CardActions>
+                            } />
+                        <CardContent
+                            className={classes.cardContent}
+                        >
                             <List disablePadding touch>
-                                <ListItem button>
+                                <ListItem
+                                    button
+                                    onClick={() => setExpandedVM(!expandedVM)}
+                                >
                                     <ListItemText
                                         primary={
                                             <Typography
@@ -309,10 +339,13 @@ const Confirm = ({ handleNext, handleBack }) => {
                                         </Typography>}
                                         secondary={vmGroupName} />
                                 </ListItem>
+                                <Divider />
                             </List>
                         </CardContent>
                         <Collapse in={expandedVM} timeout="auto" unmountOnExit>
-                            <CardContent >
+                            <CardContent
+                                className={classes.cardContent}
+                            >
                                 <List disablePadding touch>
                                     <ListItem button>
                                         <ListItemText primary={
