@@ -16,6 +16,7 @@ import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -58,7 +59,7 @@ function Alert(props) {
 }
 
 const Confirm = ({ handleNext, handleBack }) => {
-    const { formState } = useContext(GlobalContext)
+    const { formState, setVmList } = useContext(GlobalContext)
 
     useEffect(() => {
         console.log(formState)
@@ -73,7 +74,7 @@ const Confirm = ({ handleNext, handleBack }) => {
         dataSize,
         connectedApplications,
         costEstimation,
-        vmGroupName,
+        instanceGroupName,
         cpu,
         disk,
         memory,
@@ -91,6 +92,7 @@ const Confirm = ({ handleNext, handleBack }) => {
             .post(`${BASE_URL}/create-vm`, formState)
             .then((res) => {
                 console.log(res.data)
+                setVmList(res.data)
             })
             .catch((err) => console.log(err))
     }
@@ -103,17 +105,21 @@ const Confirm = ({ handleNext, handleBack }) => {
                 if (typeof res.data === 'string') {
                     setError(res.data)
                 } else {
+                    history.push(`/project/${res.data._id}/vms`)
                     console.log(res.data)
-                    handleNext()
+                    // handleNext()
                 }
             })
             .catch((err) => console.log(err))
     }
 
+    const history = useHistory();
+
     const handleSubmit = async () => {
         try {
             await registerVM();
             await createVM();
+
         } catch (error) {
             console.log(error.message)
         }
@@ -154,7 +160,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                         <CardContent
                             className={classes.cardContent}
                         >
-                            <List disablePadding touch>
+                            <List disablePadding>
                                 <ListItem
                                     button
                                     onClick={() => setExpandedProject(!expandedProject)}
@@ -177,7 +183,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                             <CardContent
                                 className={classes.cardContent}
                             >
-                                <List disablePadding touch>
+                                <List disablePadding>
                                     <ListItem button>
                                         <ListItemText className={classes.listItemText} primary={
                                             <Typography
@@ -329,7 +335,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                         <CardContent
                             className={classes.cardContent}
                         >
-                            <List disablePadding touch>
+                            <List disablePadding>
                                 <ListItem
                                     button
                                     onClick={() => setExpandedVM(!expandedVM)}
@@ -342,7 +348,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                                 color="primary">
                                                 Instance Group Name
                                         </Typography>}
-                                        secondary={vmGroupName} />
+                                        secondary={instanceGroupName} />
                                 </ListItem>
                                 <Divider />
                             </List>
@@ -351,7 +357,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                             <CardContent
                                 className={classes.cardContent}
                             >
-                                <List disablePadding touch>
+                                <List disablePadding>
                                     <ListItem button>
                                         <ListItemText className={classes.listItemText} primary={
                                             <Typography

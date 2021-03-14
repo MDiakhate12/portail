@@ -60,15 +60,13 @@ export default function MultipleCheckSelect({ inputName, inputTitle, names }) {
     return (
         <div>
             <FormControl className={classes.formControl} fullWidth>
-                <InputLabel id="demo-mutiple-chip-label">{inputTitle}</InputLabel>
+                <InputLabel>{inputTitle}</InputLabel>
                 <Select
-                    labelId="demo-mutiple-chip-label"
-                    id="demo-mutiple-chip"
                     multiple
                     name={inputName}
                     value={selectedValues}
                     onChange={onChange}
-                    input={<Input id="select-multiple-chip" />}
+                    input={<Input />}
                     renderValue={(selected) => (
                         <div className={classes.chips}>
                             {selected.map((value) => (

@@ -10,89 +10,116 @@ import Confirm from './Confirm'
 import Success from './Success'
 import ThirdStep from './ThirdStep'
 import { GlobalContext } from '../store/providers/GlobalProvider'
+import AppTypeStep from './AppTypeStep'
+import EnvStep from './EnvStep'
 // import formValidation from '../Helper/formValidation'
 
 // Step titles
 const labels = [
-  'Information Project',
-  'VM information',
-  'Provider Choice',
-  'Confirmation',
+    'Application Type',
+    'Information Project',
+    'VM information',
+    'Provider Choice',
+    'Confirmation',
 ]
 
 const StepForm = () => {
-  const [activeStep, setActiveStep] = useState(0)
-  const { formState } = useContext(GlobalContext)
+    const [activeStep, setActiveStep] = useState(0)
+    const { formState } = useContext(GlobalContext)
 
-  // const [formErrors, setFormErrors] = useState({})
+    // const [formErrors, setFormErrors] = useState({})
 
-  // Proceed to next step
-  const handleNext = () => setActiveStep((prev) => prev + 1)
-  // Go back to prev step
-  const handleBack = () => setActiveStep((prev) => prev - 1)
+    // Proceed to next step
+    const handleNext = () => setActiveStep((prev) => prev + 1)
+    // Go back to prev step
+    const handleBack = () => setActiveStep((prev) => prev - 1)
 
-  const handleSteps = (step) => {
-    switch (step) {
-      case 0:
-        return (
-          <FirstStep
-            handleNext={handleNext}
-            // formErrors={formErrors}
-          />
-        )
-      case 1:
-        return (
-          <SecondStep
-            handleNext={handleNext}
-            handleBack={handleBack}
-            // formErrors={formErrors}
-          />
-        )
-      case 2:
-        return <ThirdStep handleNext={handleNext} handleBack={handleBack} />
-      case 3:
-        return <Confirm handleNext={handleNext} handleBack={handleBack} />
-      default:
-        break
+    const handleSteps = (step) => {
+        switch (step) {
+            case 0:
+                return (
+                    <AppTypeStep
+                        handleNext={handleNext}
+                    // formErrors={formErrors}
+                    />
+                )
+            case 1:
+                if (formState.applicationType === "dev") {
+                    return (
+                        <EnvStep
+                            handleNext={handleNext}
+                            handleBack={handleBack} />
+                    )
+                }
+                return (
+                    // NORMALLY IT IS BIG DATA FORM STEP
+                    <FirstStep
+                        handleNext={handleNext}
+                        handleBack={handleBack}
+                    // formErrors={formErrors}
+                    />
+                )
+            case 2:
+                console.log(formState)
+                if (formState.environment === "prod") {
+                    return (<FirstStep
+                        handleNext={handleNext}
+                        handleBack={handleBack}
+                    // formErrors={formErrors}
+                    />)
+                }
+                return (
+                    <SecondStep
+                        handleNext={handleNext}
+                        handleBack={handleBack}
+                    // formErrors={formErrors}
+                    />
+                )
+            case 3:
+                return <ThirdStep handleNext={handleNext} handleBack={handleBack} />
+            case 4:
+                return <Confirm handleNext={handleNext} handleBack={handleBack} />
+            default:
+                break
+        }
     }
-  }
 
-  return (
-    <>
-      {activeStep === labels.length ? (
-        // Last Component
-        <Success values={formState} />
-      ) : (
+    return (
         <>
-          <Box style={{ margin: '18px 0 15px' }}>
-            <Typography variant="h4" align="center">
-              Creation de projet
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              align="center"
-              style={{ margin: '10px 0' }}
-            >
-              Cette platforme vous permet de faire le provisionning dans le
-              cloud le plus propice.
-            </Typography>
-          </Box>
-          <Stepper
-            activeStep={activeStep}
-            style={{ margin: '20px 0 13px' }}
-            alternativeLabel
-          >
-            {labels.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          {handleSteps(activeStep)}
+            {activeStep === labels.length ? (
+                // Last Component
+                <Success values={formState} />
+            ) : (
+                    <>
+                        <Box style={{ margin: '18px 0 15px' }}>
+                            <Typography variant="h4" align="center">
+                                Creation de projet
+                            </Typography>
+                            <Typography
+                                variant="subtitle2"
+                                align="center"
+                                style={{ margin: '10px 0' }}
+                            >
+                                Cette platforme vous permet de faire le provisionning dans le
+                                cloud le plus propice.
+                            </Typography>
+                        </Box>
+                        <Stepper
+                            activeStep={activeStep}
+                            style={{ margin: '20px 0 13px' }}
+                            alternativeLabel
+                        >
+                            {labels.map((label) => (
+                                <Step key={label}>
+                                    <StepLabel>{label}</StepLabel>
+                                </Step>
+                            ))}
+                        </Stepper>
+                        {handleSteps(activeStep)}
+                    </>
+                )}
         </>
-      )}
-    </>
-  )
+    )
 }
 
 export default StepForm

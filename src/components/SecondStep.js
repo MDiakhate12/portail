@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import axios from 'axios'
-import { InputAdornment, CircularProgress, Box, LinearProgress } from '@material-ui/core'
+import { InputAdornment, CircularProgress, Box } from '@material-ui/core'
 import { handleChange } from '../store/actions/actions'
 import { GlobalContext } from '../store/providers/GlobalProvider'
 import { BASE_URL } from '../App'
@@ -15,7 +15,7 @@ import { BASE_URL } from '../App'
 const SecondStep = ({ handleNext, handleBack }) => {
     const { formState, formDispatch, setLoading, loading } = useContext(GlobalContext)
 
-    const { cpu, disk, memory, numberOfVm, osImage, osType, vmGroupName } = formState
+    const { cpu, disk, memory, numberOfVm, osImage, osType, instanceGroupName } = formState
 
     const handleSubmit = () => {
         console.log('FROM SECOND STEP:', formState)
@@ -88,11 +88,11 @@ const SecondStep = ({ handleNext, handleBack }) => {
                                 <TextField
                                     variant="filled"
                                     onChange={(e) => formDispatch(handleChange(e))}
-                                    value={vmGroupName || ''}
+                                    value={instanceGroupName || ''}
                                     required
-                                    id="vmGroupName"
-                                    name="vmGroupName"
-                                    label="VM Group Name"
+                                    id="instanceGroupName"
+                                    name="instanceGroupName"
+                                    label="Instance Group Name"
                                     fullWidth
                                     autoComplete="family-name"
                                 />

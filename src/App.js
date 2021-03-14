@@ -4,8 +4,8 @@ import GlobalProvider from './store/providers/GlobalProvider'
 import { ThemeProvider, CssBaseline } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles';
 
-// export const BASE_URL = "https://fed7ae5f61a3.ngrok.io"
-export const BASE_URL = "https://faas-cloud-backend.mouhammad.ml"
+export const BASE_URL = "https://5678dc577ab0.ngrok.io"
+// export const BASE_URL = "https://faas-cloud-backend.mouhammad.ml"
 
 
 

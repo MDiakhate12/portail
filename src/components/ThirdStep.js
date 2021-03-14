@@ -6,10 +6,9 @@ import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormLabel from '@material-ui/core/FormLabel'
-import { Box, CircularProgress, LinearProgress } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import { handleChange } from '../store/actions/actions'
 import { GlobalContext } from '../store/providers/GlobalProvider'
-import { LOADING_CHANGE } from '../store/actions/actions_types'
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -38,10 +37,7 @@ const ThirdStep = ({ handleNext, handleBack }) => {
     }
 
     return (
-
-
         <>
-
             <Box
                 width="100%"
                 display="flex"
@@ -68,15 +64,12 @@ const ThirdStep = ({ handleNext, handleBack }) => {
                                 )
                             }
                             return (
-                                <div>
                                     <FormControlLabel
                                         key={providerItem.label}
                                         value={providerItem.value}
                                         control={<Radio color='primary' />}
                                         label={providerItem.label}
                                     />
-                                </div>
-
                             )
                         })}
                     </RadioGroup>

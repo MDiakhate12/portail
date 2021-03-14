@@ -14,7 +14,7 @@ import { handleChange } from '../store/actions/actions'
 import { GlobalContext } from '../store/providers/GlobalProvider'
 
 // Destructuring props
-const FirstStep = ({ handleNext }) => {
+const FirstStep = ({ handleNext, handleBack }) => {
     const { formState, formDispatch } = useContext(GlobalContext)
     const {
         projectName,
@@ -155,12 +155,20 @@ const FirstStep = ({ handleNext }) => {
             >
                 <Button
                     variant="contained"
+                    color="default"
+                    onClick={handleBack}
+                    style={{ marginRight: 10 }}
+                >
+                    Back
+                </Button>
+                <Button
+                    variant="contained"
                     // disabled={!isValid}
                     color="primary"
                     onClick={handleNext}
                 >
                     Next
-        </Button>
+                </Button>
             </div>
         </Fragment>
     )
