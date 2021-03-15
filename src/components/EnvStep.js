@@ -5,7 +5,6 @@ import devImage from '../images/dev.png';
 import prodImage from '../images/prod.png';
 import { GlobalContext } from '../store/providers/GlobalProvider';
 
-
 // Destructuring props
 const EnvStep = ({ handleNext, handleBack }) => {
 
