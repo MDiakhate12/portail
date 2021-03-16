@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react'
-import Button from '@material-ui/core/Button'
+import React, { useContext } from 'react'
 import { Box } from '@material-ui/core'
 import CustomButton from './CustomButton'
 import webImage from '../images/web.png';
@@ -15,15 +14,13 @@ const AppTypeStep = ({ handleNext }) => {
             url: webImage,
             title: 'Web',
             width: '30%',
-            onClick: () => { setApplicationType('dev'); handleNext() }
-
+            onClick: () => { setApplicationType('web'); handleNext() }
         },
         {
             url: bigDataImage,
             title: 'Big Data',
             width: '30%',
             onClick: () => { setApplicationType('big-data'); handleNext() }
-
         }
     ];
 

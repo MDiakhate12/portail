@@ -31,6 +31,13 @@ const ThirdStep = ({ handleNext, handleBack }) => {
     const { provider, providerList } = formState
     const [value, setValue] = useState(provider)
 
+    const list = providerList.length === 0 ? [
+        { label: "Amazon Web Service", value: "aws" },
+        { label: "Google Cloud Platform", value: "gcp" },
+        { label: "Microsoft Azure", value: "azure" },
+        { label: "Openstack (On-Premise)", value: "openstack" },
+    ] : providerList;
+
     const onChange = (event) => {
         setValue(event.target.value)
         formDispatch(handleChange(event))
@@ -52,8 +59,8 @@ const ThirdStep = ({ handleNext, handleBack }) => {
                         value={value}
                         onChange={onChange}
                     >
-                        {providerList.map((providerItem) => {
-                            if (providerList.indexOf(providerItem) === 0) {
+                        {list.map((providerItem) => {
+                            if (list.indexOf(providerItem) === 0) {
                                 return (
                                     <FormControlLabel
                                         key={providerItem.label}
@@ -64,12 +71,12 @@ const ThirdStep = ({ handleNext, handleBack }) => {
                                 )
                             }
                             return (
-                                    <FormControlLabel
-                                        key={providerItem.label}
-                                        value={providerItem.value}
-                                        control={<Radio color='primary' />}
-                                        label={providerItem.label}
-                                    />
+                                <FormControlLabel
+                                    key={providerItem.label}
+                                    value={providerItem.value}
+                                    control={<Radio color='primary' />}
+                                    label={providerItem.label}
+                                />
                             )
                         })}
                     </RadioGroup>

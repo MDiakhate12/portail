@@ -26,12 +26,16 @@ export default function GlobalProvider({ children }) {
     const setEnvironment = (payload) => {
         formDispatch({ type: actionType.EVIRONMENT_CHANGE, payload })
     }
+    const setStack = (payload) => {
+        formDispatch({ type: actionType.STACK_CHANGE, payload })
+    }
     return (
         <GlobalContext.Provider value={{
             formState,
             formDispatch,
             setApplicationType,
             setEnvironment,
+            setStack,
             loading,
             setLoading,
             vmList,

@@ -4,8 +4,8 @@ import Typography from '@material-ui/core/Typography'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
-import FirstStep from './FirstStep'
-import SecondStep from './SecondStep'
+import WebProjectInformation from './WebProjectInformation'
+import VmInformation from './VMInformation'
 import Confirm from './Confirm'
 import Success from './Success'
 import ThirdStep from './ThirdStep'
@@ -17,7 +17,7 @@ import EnvStep from './EnvStep'
 // Step titles
 const labels = [
     'Application Type',
-    'Information Project',
+    'Environment',
     'VM information',
     'Provider Choice',
     'Confirmation',
@@ -44,37 +44,31 @@ const StepForm = () => {
                     />
                 )
             case 1:
-                if (formState.applicationType === "dev") {
-                    return (
-                        <EnvStep
-                            handleNext={handleNext}
-                            handleBack={handleBack} />
-                    )
+                if (formState.applicationType === 'web') {
+                    return <EnvStep handleNext={handleNext} handleBack={handleBack} />
                 }
                 return (
                     // NORMALLY IT IS BIG DATA FORM STEP
-                    <FirstStep
+                    <WebProjectInformation
                         handleNext={handleNext}
                         handleBack={handleBack}
                     // formErrors={formErrors}
                     />
                 )
             case 2:
-                console.log(formState)
-                if (formState.environment === "prod") {
-                    return (<FirstStep
-                        handleNext={handleNext}
-                        handleBack={handleBack}
-                    // formErrors={formErrors}
-                    />)
+                if (formState.environment === 'prod') {
+                    return (
+                        <WebProjectInformation
+                            handleNext={handleNext}
+                            handleBack={handleBack}
+                        // formErrors={formErrors}
+                        />
+                    )
                 }
-                return (
-                    <SecondStep
-                        handleNext={handleNext}
-                        handleBack={handleBack}
-                    // formErrors={formErrors}
-                    />
-                )
+                return <VmInformation
+                    handleNext={handleNext}
+                    handleBack={handleBack} />
+            // return <NextBack handleNext={handleNext} handleBack={handleBack} />
             case 3:
                 return <ThirdStep handleNext={handleNext} handleBack={handleBack} />
             case 4:

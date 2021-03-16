@@ -61,6 +61,16 @@ function Alert(props) {
 const Confirm = ({ handleNext, handleBack }) => {
     const { formState, setVmList } = useContext(GlobalContext)
 
+    const normalizeString = (str) => {
+        /**
+         * Example replace "DiafProject" to "diaf-project"
+         */
+        return str
+            .replace(/[A-Z][a-z]*/g, (str) => `-${str.toLowerCase()}`)
+            .replace(/ /g, '').trim().replace(/--/g, '')
+            .replace(/(^-)|(-$)/g, '')
+    }
+
     useEffect(() => {
         console.log(formState)
     })
@@ -71,10 +81,9 @@ const Confirm = ({ handleNext, handleBack }) => {
         dependencies,
         SLA,
         environment,
-        dataSize,
+        stack,
         connectedApplications,
         costEstimation,
-        instanceGroupName,
         cpu,
         disk,
         memory,
@@ -86,6 +95,8 @@ const Confirm = ({ handleNext, handleBack }) => {
     } = formState
 
     const [error, setError] = useState('')
+
+    const instanceGroupName = normalizeString(projectName)
 
     const createVM = async () => {
         axios
@@ -173,7 +184,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                                 color="primary"
                                             >
                                                 Provider
-                                            </Typography>}
+                                                    </Typography>}
                                         secondary={provider.toUpperCase()} />
                                 </ListItem>
                                 <Divider />
@@ -185,26 +196,28 @@ const Confirm = ({ handleNext, handleBack }) => {
                             >
                                 <List disablePadding>
                                     <ListItem button>
-                                        <ListItemText className={classes.listItemText} primary={
-                                            <Typography
-                                                component="span"
-                                                variant="body1"
-                                                color="primary">
-                                                ProjectName
-                                        </Typography>}
+                                        <ListItemText className={classes.listItemText}
+                                            primary={
+                                                <Typography
+                                                    component="span"
+                                                    variant="body1"
+                                                    color="primary">
+                                                    Project Name
+                                                </Typography>}
                                             secondary={projectName} />
                                     </ListItem>
 
                                     <Divider />
 
                                     <ListItem button>
-                                        <ListItemText className={classes.listItemText} primary={
-                                            <Typography
-                                                component="span"
-                                                variant="body1"
-                                                color="primary">
-                                                applicationTpe
-                                        </Typography>}
+                                        <ListItemText className={classes.listItemText}
+                                            primary={
+                                                <Typography
+                                                    component="span"
+                                                    variant="body1"
+                                                    color="primary">
+                                                    Application Type
+                                             </Typography>}
                                             secondary={applicationType} />
                                     </ListItem>
 
@@ -217,62 +230,9 @@ const Confirm = ({ handleNext, handleBack }) => {
                                                     component="span"
                                                     variant="body1"
                                                     color="primary">
-                                                    ProjectArchiecture
-                                                </Typography>}
-                                            secondary={projectArchitecture}
-                                        />
-                                    </ListItem>
-
-                                    <Divider />
-
-                                    <ListItem button>
-                                        <ListItemText className={classes.listItemText} primary={
-                                            <Typography
-                                                component="span"
-                                                variant="body1"
-                                                color="primary">
-                                                dependencies
-                                            </Typography>}
-                                            secondary={dependencies} />
-                                    </ListItem>
-
-                                    <Divider />
-
-                                    <ListItem button>
-                                        <ListItemText className={classes.listItemText} primary={
-                                            <Typography
-                                                component="span"
-                                                varian1="body2"
-                                                color="primary">
-                                                SLA
-                                            </Typography>}
-                                            secondary={SLA} />
-                                    </ListItem>
-
-                                    <Divider />
-
-                                    <ListItem button>
-                                        <ListItemText className={classes.listItemText} primary={
-                                            <Typography
-                                                component="span"
-                                                variant="body1"
-                                                color="primary">
-                                                environment
-                                            </Typography>}
+                                                    Environment
+                                                    </Typography>}
                                             secondary={environment} />
-                                    </ListItem>
-
-                                    <Divider />
-
-                                    <ListItem button>
-                                        <ListItemText className={classes.listItemText} primary={
-                                            <Typography
-                                                component="span"
-                                                variant="body1"
-                                                color="primary">
-                                                dataSize
-                                            </Typography>}
-                                            secondary={dataSize} />
                                     </ListItem>
 
                                     <Divider />
@@ -284,24 +244,86 @@ const Confirm = ({ handleNext, handleBack }) => {
                                                     component="span"
                                                     variant="body1"
                                                     color="primary">
-                                                    connectedApplcations
-                                                </Typography>}
-                                            secondary={connectedApplications}
-                                        />
+                                                    Application Stack
+                                                    </Typography>}
+                                            secondary={stack} />
                                     </ListItem>
 
                                     <Divider />
 
-                                    <ListItem button>
-                                        <ListItemText className={classes.listItemText} primary={
-                                            <Typography
-                                                component="span"
-                                                variant="body1"
-                                                color="primary">
-                                                costEstimation
-                                        </Typography>}
-                                            secondary={costEstimation} />
-                                    </ListItem>
+                                    {
+                                        environment === 'prod' ?
+                                            <>
+                                                <ListItem button>
+                                                    <ListItemText className={classes.listItemText}
+                                                        primary={
+                                                            <Typography
+                                                                component="span"
+                                                                variant="body1"
+                                                                color="primary">
+                                                                Dependencies
+                                                    </Typography>}
+                                                        secondary={dependencies} />
+                                                </ListItem>
+                                                <Divider />
+
+                                                <ListItem button>
+                                                    <ListItemText className={classes.listItemText}
+                                                        primary={
+                                                            <Typography
+                                                                component="span"
+                                                                variant="body1"
+                                                                color="primary">
+                                                                Connected Applcations
+                                                        </Typography>}
+                                                        secondary={connectedApplications}
+                                                    />
+                                                </ListItem>
+
+                                                <Divider />
+
+                                                <ListItem button>
+                                                    <ListItemText className={classes.listItemText}
+                                                        primary={
+                                                            <Typography
+                                                                component="span"
+                                                                variant="body1"
+                                                                color="primary">
+                                                                Project Cost Estimation
+                                                    </Typography>}
+                                                        secondary={costEstimation} />
+                                                </ListItem>
+
+                                                <Divider />
+
+                                                <ListItem button>
+                                                    <ListItemText className={classes.listItemText} primary={
+                                                        <Typography
+                                                            component="span"
+                                                            varian1="body2"
+                                                            color="primary">
+                                                            SLA
+                                                    </Typography>}
+                                                        secondary={SLA} />
+                                                </ListItem>
+
+                                                <Divider />
+
+                                                <ListItem button>
+                                                    <ListItemText className={classes.listItemText}
+                                                        primary={
+                                                            <Typography
+                                                                component="span"
+                                                                variant="body1"
+                                                                color="primary">
+                                                                Project Archiecture
+                                                        </Typography>}
+                                                        secondary={projectArchitecture}
+                                                    />
+                                                </ListItem>
+                                            </>
+                                            : ''
+                                    }
                                 </List>
                             </CardContent>
                         </Collapse>
@@ -365,7 +387,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                                 varian1="body1"
                                                 color="primary">
                                                 cpu
-                                            </Typography>}
+                                                    </Typography>}
                                             secondary={cpu} />
                                     </ListItem>
 
@@ -378,7 +400,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                                 variant="body1"
                                                 color="primary">
                                                 disk
-                                            </Typography>}
+                                                    </Typography>}
                                             secondary={disk} />
                                     </ListItem>
 
@@ -391,7 +413,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                                 variant="body1"
                                                 color="primary">
                                                 memory
-                                            </Typography>}
+                                                    </Typography>}
                                             secondary={memory} />
                                     </ListItem>
 
@@ -430,7 +452,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                                                 variant="body1"
                                                 color="primary">
                                                 osType
-                                            </Typography>}
+                                                    </Typography>}
                                             secondary={osType} />
                                     </ListItem>
                                 </List>

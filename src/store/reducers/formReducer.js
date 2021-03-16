@@ -3,18 +3,17 @@ import { updateObject } from '../utility'
 
 export const formInitialState = {
     projectName: 'DiafProject',
-    applicationType: 'dev',
+    applicationType: 'web',
     dependencies: ['nginx', 'nodejs'],
     SLA: 4,
     environment: 'prod',
-    dataSize: '',
+    stack: 'mern',
     connectedApplications: ['gaia', 'orange-et-moi', 'nessico'],
     costEstimation: 777777,
-    instanceGroupName: 'walabok',
     cpu: 1,
     disk: 10,
     memory: 1 * 1024,
-    numberOfVm: 1,
+    numberOfVm: 3,
     osImage: 'debian-10',
     osType: 'debian-cloud',
     publicIP: "",
@@ -42,6 +41,11 @@ export const formReducer = (state, action) => {
             return {
                 ...state,
                 environment: action.payload
+            }
+        case actionType.STACK_CHANGE:
+            return {
+                ...state,
+                stack: action.payload
             }
         default:
             return state

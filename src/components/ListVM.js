@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react'
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 import axios from 'axios'
 import Title from './Title'
 import { useParams } from 'react-router-dom'
@@ -13,7 +11,6 @@ function ListVM() {
     const { projectId } = useParams()
     const [rows, setRows] = useState([])
     const { vmList } = useContext(GlobalContext)
-
     const columns = [
         {
             field: 'id',
@@ -21,12 +18,24 @@ function ListVM() {
             width: 130,
             hide: true,
         },
-        { field: 'memory', headerName: 'RAM', width: 85, type: 'number' },
+        { field: 'name', headerName: 'Name', type: 'String', width: 170 },
         { field: 'cpu', headerName: 'CPU', width: 85, type: 'number' },
-        { field: 'disk', headerName: 'Disk', type: 'number' },
-        { field: 'instanceGroupName', headerName: 'Instance Group', type: 'String', width: 170 },
+        { field: 'memory', headerName: 'RAM', width: 85, type: 'number', renderCell: (params) => `${params.value} MB` },
+        { field: 'disk', headerName: 'Disk', type: 'number', renderCell: (params) => `${params.value} GB` },
         { field: 'osType', headerName: 'Os Type', width: 160 },
         { field: 'osImage', headerName: 'Os Image', width: 160 },
+        {
+            field: 'privateIP',
+            headerName: 'Private IP',
+            width: 130,
+            type: String,
+            renderCell: (params) => {
+                if (params.value === undefined)
+                    return (<Box alignItems="center" justifyContent="center"><CircularProgress color="primary" /></Box>)
+
+                return (<strong>{params.value}</strong>)
+            }
+        },
         {
             field: 'publicIP',
             headerName: 'Public IP',
@@ -35,7 +44,6 @@ function ListVM() {
             renderCell: (params) => {
                 if (params.value === undefined)
                     return (<Box alignItems="center" justifyContent="center"><CircularProgress color="primary" /></Box>)
-
                 return (<strong>{params.value}</strong>)
             }
         },
@@ -52,7 +60,7 @@ function ListVM() {
                 setRows(r)
                 console.log(r)
             })
-    }, [projectId])
+    }, [projectId, vmList])
 
     return (
         <div>
