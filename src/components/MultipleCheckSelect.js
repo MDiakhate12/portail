@@ -63,6 +63,7 @@ export default function MultipleCheckSelect({ inputName, inputTitle, names }) {
                 <InputLabel>{inputTitle}</InputLabel>
                 <Select
                     multiple
+                    disabled={inputName === "dependencies"}
                     name={inputName}
                     value={selectedValues}
                     onChange={onChange}

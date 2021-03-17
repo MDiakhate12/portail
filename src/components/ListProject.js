@@ -21,7 +21,7 @@ function ListProject() {
                             variant="contained"
                             color="primary"
                             size="small"
-                            onClick={() => history.push(`project/${params.value}/vms`)}
+                            onClick={() => history.push(`project/${params.value}/vms?environment=${params.getValue('environment')}`)}
                             style={{ marginLeft: 5 }}
                         >
                             Ouvrir

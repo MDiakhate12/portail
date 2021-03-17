@@ -20,6 +20,15 @@ export const formInitialState = {
     provider: '',
     providerList: [],
     projectArchitecture: 'micro',
+    frontendOptions: {
+        frontend_project_repository: "https://github.com/MDiakhate12/springboot-crudapi-frontend.git"
+    },
+    backendOptions: {
+        backend_db_uri: "mongodb+srv://Amet:amet@clusterprovisionning.3p11m.mongodb.net/diaf?retryWrites=true&w=majority",
+        backend_port: 3000,
+        backend_main_file: "index.js",
+        backend_project_repository: "https://github.com/MDiakhate12/springboot-crudapi-frontend.git"
+    }
 }
 
 const handleChange = (state, action) => {

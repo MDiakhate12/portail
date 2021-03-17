@@ -116,7 +116,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                 if (typeof res.data === 'string') {
                     setError(res.data)
                 } else {
-                    history.push(`/project/${res.data._id}/vms`)
+                    history.push(`/project/${res.data._id}/vms?environment=${res.data.environment}`)
                     console.log(res.data)
                     // handleNext()
                 }

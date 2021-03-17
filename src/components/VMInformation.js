@@ -25,6 +25,8 @@ const SecondStep = ({ handleNext, handleBack }) => {
     environment,
     osType,
     projectName,
+    // frontendOptions,
+    // backendOptions,
   } = formState
 
 //   const handleSubmit = () => {
