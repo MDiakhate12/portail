@@ -1,22 +1,25 @@
-import React, { useContext } from 'react'
-import Grid from '@material-ui/core/Grid'
-import TextField from '@material-ui/core/TextField'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import Button from '@material-ui/core/Button'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
+import React, { useContext } from "react";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 // import axios from 'axios'
-import { InputAdornment, CircularProgress, Box } from '@material-ui/core'
-import { handleChange } from '../store/actions/actions'
-import { GlobalContext } from '../store/providers/GlobalProvider'
+import { InputAdornment, CircularProgress, Box } from "@material-ui/core";
+import { handleChange } from "../store/actions/actions";
+import { GlobalContext } from "../store/providers/GlobalProvider";
 // import { BASE_URL } from '../App'
 
 const SecondStep = ({ handleNext, handleBack }) => {
-  const { formState, formDispatch, 
-    // setLoading, 
-    loading } = useContext(GlobalContext)
-  
+  const {
+    formState,
+    formDispatch,
+    // setLoading,
+    loading,
+  } = useContext(GlobalContext);
+
   const {
     cpu,
     disk,
@@ -25,85 +28,86 @@ const SecondStep = ({ handleNext, handleBack }) => {
     environment,
     osType,
     projectName,
-    // frontendOptions,
-    // backendOptions,
-  } = formState
+  } = formState;
 
-//   const handleSubmit = () => {
-//     console.log('FROM SECOND STEP:', formState)
-//     setLoading(true)
+  //   const handleSubmit = () => {
+  //     console.log('FROM SECOND STEP:', formState)
+  //     setLoading(true)
 
-//     // GET CLOUD PROVIDERS ORIENTATION LIST
-//     axios
-//       .post(`${BASE_URL}/provider-list`, formState)
-//       .then((res) => {
-//         console.log(res.data)
-//         let providers = res.data.providers.map((provider) => ({
-//           value: provider.toLowerCase(),
-//           label: provider,
-//         }))
+  //     // GET CLOUD PROVIDERS ORIENTATION LIST
+  //     axios
+  //       .post(`${BASE_URL}/provider-list`, formState)
+  //       .then((res) => {
+  //         console.log(res.data)
+  //         let providers = res.data.providers.map((provider) => ({
+  //           value: provider.toLowerCase(),
+  //           label: provider,
+  //         }))
 
-//         // IF ON PREMISE SCORE GREATER THAN 0.5
-//         if (res.data.score <= 0.5) {
-//           providers = [
-//             // RECOMMEND ON-PREMISE ON TOP
-//             { value: 'openstack', label: 'OPENSTACK (ON PREMISE)' },
-//             ...providers,
-//           ]
-//         } else {
-//           // RECOMMEND PROVIDER-LIST ON TOP
-//           providers = [
-//             ...providers,
-//             { value: 'openstack', label: 'OPENSTACK (ON PREMISE)' },
-//           ]
-//         }
-//         formDispatch(
-//           handleChange({
-//             target: {
-//               name: 'providerList',
-//               value: providers,
-//             },
-//           }),
-//         )
-//         formDispatch(
-//           handleChange({
-//             target: {
-//               name: 'provider',
-//               value: providers[0].value,
-//             },
-//           }),
-//         )
-//         handleNext()
+  //         // IF ON PREMISE SCORE GREATER THAN 0.5
+  //         if (res.data.score <= 0.5) {
+  //           providers = [
+  //             // RECOMMEND ON-PREMISE ON TOP
+  //             { value: 'openstack', label: 'OPENSTACK (ON PREMISE)' },
+  //             ...providers,
+  //           ]
+  //         } else {
+  //           // RECOMMEND PROVIDER-LIST ON TOP
+  //           providers = [
+  //             ...providers,
+  //             { value: 'openstack', label: 'OPENSTACK (ON PREMISE)' },
+  //           ]
+  //         }
+  //         formDispatch(
+  //           handleChange({
+  //             target: {
+  //               name: 'providerList',
+  //               value: providers,
+  //             },
+  //           }),
+  //         )
+  //         formDispatch(
+  //           handleChange({
+  //             target: {
+  //               name: 'provider',
+  //               value: providers[0].value,
+  //             },
+  //           }),
+  //         )
+  //         handleNext()
 
-//         setLoading(false)
-//       })
-//       .catch((err) => console.log(err))
-//   }
+  //         setLoading(false)
+  //       })
+  //       .catch((err) => console.log(err))
+  //   }
 
   return (
     <>
-      {loading === true ? (
-        <Box
-          width="100%"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          marginTop={10}
-        >
+      <Box
+        width="100%"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        marginTop={2}
+      >
+        {loading === true ? (
           <CircularProgress size={70} />
-        </Box>
-      ) : (
-        <>
-          <Grid container spacing={3} style={{ padding: '5px 12px 5px 12px' }}>
-            {environment === 'dev' ? (
-              <Grid item xs={12} sm={6}>
+        ) : (
+          <Grid
+            container
+            spacing={3}
+            style={{ padding: "5px 12px 5px 12px" }}
+            sm={10}
+          >
+            {environment === "dev" ? (
+              <Grid item xs={12} sm={4}>
                 <TextField
                   variant="filled"
                   fullWidth
                   label="Project Name"
                   name="projectName"
                   placeholder="Your project name"
-                  value={projectName || ''}
+                  value={projectName || ""}
                   onChange={(e) => formDispatch(handleChange(e))}
                   // error={!!formErrors.projectName}
                   // helperText={formErrors.projectName}
@@ -111,7 +115,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
                 />
               </Grid>
             ) : (
-              ''
+              ""
             )}
 
             <Grid item sm={4}>
@@ -120,13 +124,13 @@ const SecondStep = ({ handleNext, handleBack }) => {
                 <Select
                   required
                   labelId="os-type"
-                  value={osType || ''}
+                  value={osType || ""}
                   onChange={(e) => formDispatch(handleChange(e))}
                   id="os-type"
                   name="osType"
                 >
-                  <MenuItem value={'debian-cloud'}>Debian</MenuItem>
-                  <MenuItem value={'ubuntu-os-cloud'}>Ubuntu</MenuItem>
+                  <MenuItem value={"debian-cloud"}>Debian</MenuItem>
+                  <MenuItem value={"ubuntu-os-cloud"}>Ubuntu</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -141,16 +145,16 @@ const SecondStep = ({ handleNext, handleBack }) => {
                   id="os-image"
                   name="osImage"
                 >
-                  <MenuItem value={'debian-10'}>
+                  <MenuItem value={"debian-10"}>
                     Debian GNU/Linux 10 (buster)
                   </MenuItem>
-                  <MenuItem value={'debian-9'}>
+                  <MenuItem value={"debian-9"}>
                     Debian GNU/Linux 9 (stretch)
                   </MenuItem>
-                  <MenuItem value={'ubuntu-2004-lts'}>
+                  <MenuItem value={"ubuntu-2004-lts"}>
                     Ubuntu 20.04 LTS
                   </MenuItem>
-                  <MenuItem value={'ubuntu-1804-lts'}>
+                  <MenuItem value={"ubuntu-1804-lts"}>
                     Ubuntu 18.04 LTS
                   </MenuItem>
                 </Select>
@@ -160,7 +164,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
               <FormControl variant="filled" fullWidth>
                 <InputLabel>vCPU</InputLabel>
                 <Select
-                  value={cpu || ''}
+                  value={cpu || ""}
                   onChange={(e) => formDispatch(handleChange(e))}
                   name="cpu"
                 >
@@ -176,7 +180,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
               <FormControl variant="filled" fullWidth>
                 <InputLabel>Memory</InputLabel>
                 <Select
-                  value={memory || ''}
+                  value={memory || ""}
                   onChange={(e) => formDispatch(handleChange(e))}
                   name="memory"
                   startAdornment={
@@ -196,7 +200,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
                 variant="filled"
                 required
                 type="number"
-                value={disk || ''}
+                value={disk || ""}
                 onChange={(e) => formDispatch(handleChange(e))}
                 id="disk"
                 name="disk"
@@ -208,7 +212,7 @@ const SecondStep = ({ handleNext, handleBack }) => {
                   ),
                 }}
                 inputProps={{
-                  step: '10',
+                  step: "10",
                 }}
               />
             </Grid>
@@ -246,35 +250,34 @@ const SecondStep = ({ handleNext, handleBack }) => {
 
               */}
           </Grid>
-
-          <div
-            style={{
-              display: 'flex',
-              marginTop: 50,
-              justifyContent: 'flex-end',
-            }}
-          >
-            <Button
-              variant="contained"
-              color="default"
-              onClick={handleBack}
-              style={{ marginRight: 10 }}
-            >
-              Back
-            </Button>
-            <Button
-              variant="contained"
-              // disabled={!isValid}
-              color="primary"
-              onClick={handleNext}
-            >
-              Next
-            </Button>
-          </div>
-        </>
-      )}
+        )}
+      </Box>
+      <div
+        style={{
+          display: "flex",
+          marginTop: 50,
+          justifyContent: "flex-end",
+        }}
+      >
+        <Button
+          variant="contained"
+          color="default"
+          onClick={handleBack}
+          style={{ marginRight: 10 }}
+        >
+          Back
+        </Button>
+        <Button
+          variant="contained"
+          // disabled={!isValid}
+          color="primary"
+          onClick={handleNext}
+        >
+          Next
+        </Button>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default SecondStep
+export default SecondStep;

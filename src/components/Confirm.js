@@ -61,11 +61,11 @@ function Alert(props) {
 const Confirm = ({ handleNext, handleBack }) => {
     const { formState, setVmList } = useContext(GlobalContext)
 
-    const normalizeString = (str) => {
+    const normalizeString = (strToNormalize) => {
         /**
          * Example replace "DiafProject" to "diaf-project"
          */
-        return str
+        return strToNormalize
             .replace(/[A-Z][a-z]*/g, (str) => `-${str.toLowerCase()}`)
             .replace(/ /g, '').trim().replace(/--/g, '')
             .replace(/(^-)|(-$)/g, '')
@@ -116,8 +116,8 @@ const Confirm = ({ handleNext, handleBack }) => {
                 if (typeof res.data === 'string') {
                     setError(res.data)
                 } else {
-                    history.push(`/project/${res.data._id}/vms?environment=${res.data.environment}`)
-                    console.log(res.data)
+                    history.push(`/project/${res.data._id}/vms?environment=${res.data._doc.environment}`)
+                    console.log("FROM CONFIRM:", res.data)
                     // handleNext()
                 }
             })
@@ -131,8 +131,8 @@ const Confirm = ({ handleNext, handleBack }) => {
             await registerVM();
             await createVM();
 
-        } catch (error) {
-            console.log(error.message)
+        } catch (err) {
+            console.log(err.message)
         }
 
     }

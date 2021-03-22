@@ -13,13 +13,13 @@ const AppTypeStep = ({ handleNext }) => {
         {
             url: webImage,
             title: 'Web',
-            width: '30%',
+            width: '25%',
             onClick: () => { setApplicationType('web'); handleNext() }
         },
         {
             url: bigDataImage,
             title: 'Big Data',
-            width: '30%',
+            width: '25%',
             onClick: () => { setApplicationType('big-data'); handleNext() }
         }
     ];
