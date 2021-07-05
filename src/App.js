@@ -3,6 +3,8 @@ import Dashboard from './components/Dashboard'
 import GlobalProvider from './store/providers/GlobalProvider'
 import { ThemeProvider, CssBaseline } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 
 export const BASE_URL = "http://localhost:8080"
 // export const BASE_URL = "https://faas-cloud-backend.mouhammad.ml"
@@ -51,6 +53,8 @@ function App() {
             <GlobalProvider>
                 <BrowserRouter>
                     <Route path="/" component={Dashboard} />
+                    {/* <Route path="/login" component={SignIn} />
+                    <Route path="/register" component={SignUp} /> */}
                 </BrowserRouter>
             </GlobalProvider>
         </ThemeProvider>

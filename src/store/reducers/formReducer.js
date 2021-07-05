@@ -21,16 +21,14 @@ export const formInitialState = {
   providerList: [],
   projectArchitecture: "micro",
   frontendOptions: {
-    project_repository:
-      "https://github.com/MDiakhate12/springboot-crudapi-frontend.git",
+    project_repository: "https://github.com/MDiakhate12/mern-prod-frontend.git",
   },
   backendOptions: {
     db_uri:
-      "mongodb+srv://Amet:amet@clusterprovisionning.3p11m.mongodb.net/diaf?retryWrites=true&w=majority",
-    port: 3000,
+      "mongodb+srv://Amet:amet@clusterprovisionning.3p11m.mongodb.net/mern-prod-database?retryWrites=true&w=majority",
+    port: 4000,
     main_file: "index.js",
-    project_repository:
-      "https://github.com/MDiakhate12/springboot-crudapi-frontend.git",
+    project_repository: "https://github.com/MDiakhate12/mern-prod-backend.git",
     jar_url: "",
   },
 };

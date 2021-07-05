@@ -4,8 +4,9 @@ import Title from "./Title";
 import { useParams, useLocation } from "react-router-dom";
 import DataTable from "./DataTable";
 import { BASE_URL } from "../App";
-import { CircularProgress, Box } from "@material-ui/core";
+import { CircularProgress, Box, IconButton, Tooltip } from "@material-ui/core";
 import { GlobalContext } from "../store/providers/GlobalProvider";
+import FileCopyIcon from "@material-ui/icons/FileCopy";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -15,7 +16,13 @@ function ListVM() {
   const { projectId } = useParams();
   const environment = useQuery().get("environment");
   const [rows, setRows] = useState([]);
-  const { vmList } = useContext(GlobalContext);
+  const { vmList, openSnackbar } = useContext(GlobalContext);
+
+  const copyToClipboard = (e, text) => {
+    navigator.clipboard.writeText(text);
+    openSnackbar("Copied to clipboard!", "info");
+  };
+
   const columns = [
     {
       field: "id",
@@ -48,7 +55,7 @@ function ListVM() {
     {
       field: "privateIP",
       headerName: "Private IP",
-      width: 130,
+      width: 150,
       type: String,
       hide: environment !== "dev",
       renderCell: (params) => {
@@ -58,13 +65,25 @@ function ListVM() {
               <CircularProgress color="primary" />
             </Box>
           );
-        return <strong>{params.value}</strong>;
+        return (
+          <div>
+            <strong>{params.value}</strong>
+            <Tooltip title="Copy private IP">
+              <IconButton
+                size="small"
+                onClick={(e) => copyToClipboard(e, params.value)}
+              >
+                <FileCopyIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          </div>
+        );
       },
     },
     {
       field: "publicIP",
       headerName: "Public IP",
-      width: 130,
+      width: 150,
       type: String,
       hide: environment !== "dev",
       renderCell: (params) => {
@@ -74,7 +93,19 @@ function ListVM() {
               <CircularProgress color="primary" />
             </Box>
           );
-        return <strong>{params.value}</strong>;
+        return (
+          <div>
+            <strong>{params.value}</strong>
+            <Tooltip title="Copy public IP">
+              <IconButton
+                size="small"
+                onClick={(e) => copyToClipboard(e, params.value)}
+              >
+                <FileCopyIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          </div>
+        );
       },
     },
     {
@@ -96,7 +127,7 @@ function ListVM() {
     {
       field: "IPAddress",
       headerName: "IP Address",
-      width: 130,
+      width: 150,
       type: String,
       hide: environment !== "prod",
       renderCell: (params) => {
@@ -106,7 +137,17 @@ function ListVM() {
               <CircularProgress color="primary" />
             </Box>
           );
-        return <strong>{params.value}</strong>;
+        <div>
+          <strong>{params.value}</strong>
+          <Tooltip title="Copy IP Address">
+            <IconButton
+              size="small"
+              onClick={(e) => copyToClipboard(e, params.value)}
+            >
+              <FileCopyIcon fontSize="small" />
+            </IconButton>
+          </Tooltip>
+        </div>;
       },
     },
   ];

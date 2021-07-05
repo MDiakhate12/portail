@@ -7,7 +7,7 @@ import DataTable from './DataTable'
 import { BASE_URL } from '../App'
 import { useHistory } from "react-router-dom";
 
-function ListProject() {
+export default function ListProject() {
     const [rows, setRows] = useState([])
     const history = useHistory();
     const columns = [
@@ -62,11 +62,9 @@ function ListProject() {
     }, [])
 
     return (
-        <div>
+        <>
             <Title>List of projects</Title>
             <DataTable columns={columns} rows={rows} />
-        </div>
+        </>
     )
 }
-
-export default ListProject

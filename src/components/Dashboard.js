@@ -183,7 +183,7 @@ function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Switch>
-            <Route path="/" exact={true} component={StepForm} />
+            <Route path="/" exact component={StepForm} />
             <Route path="/list-projects" component={ListProject} />
             <Route path="/project/:projectId/vms" component={ListVM} />
           </Switch>

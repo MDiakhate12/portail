@@ -87,10 +87,10 @@ export default function GlobalProvider({ children }) {
 
   const openSnackbar = (message, severity) => {
     console.log(snackbarState);
-    // snackbarDispatch({
-    //   type: actionType.SNACK_OPEN,
-    //   payload: { message, severity },
-    // });
+    snackbarDispatch({
+      type: actionType.SNACK_OPEN,
+      payload: { message, severity },
+    });
   };
 
   const closeSnackbar = (event, reason) => {
