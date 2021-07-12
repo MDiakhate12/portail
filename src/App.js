@@ -14,10 +14,13 @@ export const BASE_URL = "http://localhost:8080"
 const theme = createMuiTheme({
     typography: {
         body1: {
-            fontSize: '0.85rem'
+            fontSize: '1.3rem'
         },
         body2: {
-            fontSize: '0.85rem'
+            fontSize: '1.1rem'
+        },
+        subtitle1: {
+            fontSize: '1.2rem'
         },
         button: {
             fontSize: '0.85rem'

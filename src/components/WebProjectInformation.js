@@ -239,7 +239,7 @@ const FirstStep = ({ handleNext, handleBack }) => {
           onClick={handleBack}
           style={{ marginRight: 10 }}
         >
-          Back
+          Précédent
         </Button>
         <Button
           variant="contained"
@@ -247,7 +247,7 @@ const FirstStep = ({ handleNext, handleBack }) => {
           color="primary"
           onClick={handleNext}
         >
-          Next
+          Suivant
         </Button>
       </div>
     </Fragment>

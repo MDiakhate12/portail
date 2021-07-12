@@ -13,7 +13,7 @@ export const mainListItems = (
                 <ListItemIcon>
                     <DashboardIcon color='primary' />
                 </ListItemIcon>
-                <ListItemText primary="Create Project" />
+                <ListItemText primary="Créer un projet" />
             </ListItem>
         </Link>
         <Link to={'/list-projects'} style={{ textDecoration: "none", color: "inherit" }}>
@@ -21,7 +21,7 @@ export const mainListItems = (
                 <ListItemIcon>
                     <BarChartIcon color='primary' />
                 </ListItemIcon>
-                <ListItemText primary="List Project" />
+                <ListItemText primary="Liste des projets" />
             </ListItem>
         </Link>
     </div>

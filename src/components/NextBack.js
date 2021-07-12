@@ -10,7 +10,7 @@ function NextBack({ handleNext, handleBack }) {
         onClick={handleBack}
         style={{ marginRight: 10 }}
       >
-        Back
+        Précédent
       </Button>
       <Button
         variant="contained"
@@ -18,7 +18,7 @@ function NextBack({ handleNext, handleBack }) {
         color="primary"
         onClick={handleNext}
       >
-        Next
+        Suivant
       </Button>
     </center>
   )

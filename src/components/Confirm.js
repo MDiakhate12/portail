@@ -468,7 +468,7 @@ const Confirm = ({ handleNext, handleBack }) => {
                 style={{ display: 'flex', marginTop: 50, justifyContent: 'flex-end' }}
             >
                 <Button variant="contained" color="default" onClick={handleBack}>
-                    Back
+                    Précédent
         </Button>
                 <Button
                     style={{ marginLeft: 10 }}

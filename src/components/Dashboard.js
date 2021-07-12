@@ -19,6 +19,7 @@ import { mainListItems } from "./listItems";
 import ListVM from "./ListVM";
 import StepForm from "./StepForm";
 import ListProject from "./ListProject";
+import OrangeImage from "../images/orange.png";
 
 function Copyright() {
   return (
@@ -114,6 +115,16 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  infos: {
+    position: "absolute",
+    bottom: "10px",
+    marginLeft: theme.spacing(1),
+    display: "flex",
+    flexGrow: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+  },
 }));
 
 function Dashboard() {
@@ -153,7 +164,7 @@ function Dashboard() {
             noWrap
             className={classes.title}
           >
-            Faas - VMs Handling
+            Taf-Taf
           </Typography>
           {
             // <IconButton color="inherit">
@@ -178,6 +189,38 @@ function Dashboard() {
         </div>
         <Divider />
         <List>{mainListItems}</List>
+
+        <div
+          className={classes.infos}
+          id="infos"
+          style={{
+            width: "-webkit-fill-available",
+          }}
+        >
+          <img
+            src={OrangeImage}
+            alt=""
+            width={open ? "100px" : "47px"}
+            height={open ? "100px" : "47px"}
+            style={{
+              transition: "all 0.2s",
+              marginBottom: "17px",
+            }}
+          />
+
+          <Typography
+            variant="body1"
+            color="textSecondary"
+            align="center"
+            style={{
+              fontSize: open ? "1rem" : "0.7rem",
+              transition: "all 0.2s",
+            }}
+          >
+            {" "}
+            2021 &copy; Orange SONATEL
+          </Typography>
+        </div>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />

@@ -102,7 +102,7 @@ const EnvStep = ({ handleNext, handleBack }) => {
           onClick={handleBack}
           style={{ marginRight: 10 }}
         >
-          Back
+          Précédent
         </Button>
         <Button
           variant="contained"
@@ -120,7 +120,7 @@ const EnvStep = ({ handleNext, handleBack }) => {
             handleNext();
           }}
         >
-          Next
+          Suivant
         </Button>
       </div>
       <Snack />

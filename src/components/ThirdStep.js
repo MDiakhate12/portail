@@ -91,7 +91,7 @@ const ThirdStep = ({ handleNext, handleBack }) => {
                     onClick={handleBack}
                     style={{ marginRight: 10 }}
                 >
-                    Back
+                    Précédent
                             </Button>
                 <Button
                     variant="contained"
@@ -99,7 +99,7 @@ const ThirdStep = ({ handleNext, handleBack }) => {
                     color="primary"
                     onClick={handleNext}
                 >
-                    Next
+                    Suivant
                             </Button>
             </div>
 
